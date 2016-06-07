@@ -198,4 +198,17 @@ class Controller {
         $view = new View('kontakt');
 		$this->page->addView($view);
     }
+	
+	public function panel_kierownika()
+	{
+		$id = htmlspecialchars($_GET['typ']);
+		//echo $id;
+		if(isset($id) && $id != "")
+		{
+			$view = new View($id);
+		} else {
+			$view = new View('panel_kierownika');
+		}
+		$this->page->addView($view);
+	}	
 }
