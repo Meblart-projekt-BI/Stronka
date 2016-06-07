@@ -40,13 +40,13 @@ error_reporting(~E_NOTICE);
     <!--Nawigacja strony -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            
-			
+
+
             <div class="navbar-header">
-                <a class="navbar-brand" href="koszyk.html">Koszyk</a>
+                <a class="navbar-brand" href="index.php?action=showCart">Koszyk</a>
             </div>
-			
-			
+
+
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -64,10 +64,10 @@ error_reporting(~E_NOTICE);
                     <li>
                     <?php if($_SESSION['login'] == 'yes')  { ?>
 						<a href="index.php?action=userpanel">Witaj: <?=$_SESSION['user']; ?></a>
-					<?php } else { ?>                        
+					<?php } else { ?>
                         <a href="index.php?action=login">Zaloguj się</a>
                     <?php } ?>
-					</li>		 
+					</li>
 				<?php if($_SESSION['pracownik'])  { ?>
 					<li>
 						<a href="index.php?do=panel">Panel pracownika</a>
@@ -81,12 +81,12 @@ error_reporting(~E_NOTICE);
     </nav>
     <div class="container">
         <?php
-        
- 
-         foreach ($views as $view) echo $view; 
-         
+
+
+         foreach ($views as $view) echo $view;
+
          ?>
-     
+
   <!-- Footer -->
         <footer>
             <div class="row">
@@ -99,7 +99,7 @@ error_reporting(~E_NOTICE);
     </div>
     <!-- /.container -->
 
-  
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -115,4 +115,4 @@ error_reporting(~E_NOTICE);
 </html>
 <?php
 ob_end_flush();
-    
+

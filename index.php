@@ -7,16 +7,16 @@ define('INDEX_DIR', __DIR__);
 
 
 /**
- Aby móc korzystać z klas należy je włączyć do kodu, np. za pomocą funkcji require_once(). 
- Można też skorzystać z opcji autoloadera. Wówczas jeżeli danej klasy, do której się odwołujemy nie ma w systemie, 
- to system PHP wywoła autoloadera, aby taką klasę dla niego załadował. Poniżej kod umożliwiający taką automatyczną akcję. 
- W ten sposób w dużych projektach nie musimy pamiętać co gdzie ładować oraz co ważne, do pamięci są ładowane tylko te klasy, 
+ Aby móc korzystać z klas należy je włączyć do kodu, np. za pomocą funkcji require_once().
+ Można też skorzystać z opcji autoloadera. Wówczas jeżeli danej klasy, do której się odwołujemy nie ma w systemie,
+ to system PHP wywoła autoloadera, aby taką klasę dla niego załadował. Poniżej kod umożliwiający taką automatyczną akcję.
+ W ten sposób w dużych projektach nie musimy pamiętać co gdzie ładować oraz co ważne, do pamięci są ładowane tylko te klasy,
  które są potrzebne.
  */
- 
+
 function autoload($className) {
     $classFileName = INDEX_DIR."/class/$className.class.php";
-    
+
     if (is_file($classFileName)) {
         require_once($classFileName);
     }

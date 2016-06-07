@@ -89,7 +89,7 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
+                            <a class="navbar-brand" href="about.html">Panel pracownika</a>
                         </div>
                   <!--      <div class="collapse navbar-collapse main-navbar-collapse">
                             <ul class="nav navbar-nav">
@@ -119,14 +119,18 @@ error_reporting(~E_NOTICE);
             <!-- left, vertical navbar & content -->
             <div class="row">
                 <!-- left, vertical navbar -->
-                 <div class="col-md-2 list-group">
-              
-                            <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                      
-                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
-                       
-                            <a href="#" class="list-group-item">Wiadomości</a>
-                 
+                <div class="col-md-2 bootstrap-admin-col-left">
+                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+                        <li>
+                            <a href="index.php?do=zamowienia"><span class="badge pull-right">731</span>Zamówienia</a>
+                        </li>
+                        <li>
+                            <a href="index.php?do=faktura"><span class="badge pull-right">812</span>Faktury</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
+                        </li>
+                    </ul>
                 </div>
 
 

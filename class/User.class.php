@@ -56,8 +56,7 @@ class User  extends DBObject{
 			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
 			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
 			$this->result = $stm;
-			
-            if($stm == 1) 
+			if($stm == 1) 
 			{
 				$_SESSION['user']=$this->email;
 				$_SESSION['login']='yes';
