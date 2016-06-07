@@ -57,18 +57,12 @@ error_reporting(~E_NOTICE);
                                 <li>
                                     <a href="index.php?do=page">Powrót do strony głównej <i class="glyphicon glyphicon-share-alt"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                   
-                    <?php if($_SESSION['login'] == 'yes') { ?>
-						<a href="index.php?action=jobholderpanel" role="button" class="dropdown-toggle" data-hover="dropdown"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i> </a>
-                    <?php } ?>                
-                                    
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                      <!--                  <li role="presentation" class="divider"></li>  Linia dzieląca -->
-                                        <li><a href="index.php">Wyloguj się</a></li>
-                                    </ul>
+                                <li>
+                                 <?php if($_SESSION['login'] == 'yes') { ?>
+                                    <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
+                                 <?php } ?>      
                                 </li>
+                                <li><a href="index.php?do=page">Wyloguj się</a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,7 +119,7 @@ error_reporting(~E_NOTICE);
                       
                             <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
                        
-                            <a href="#" class="list-group-item">Wiadomości</a>
+                            <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
                  
                 </div>
 

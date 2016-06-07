@@ -71,6 +71,30 @@ class Product {
         return $this->result;
     }
     
+    public function getZamowienieKlienta()
+    {
+        $query = $this->db->query('select * from zamowienie where id_klienta=(select id_klienta from zamowienie)');
+        $this->result = $query;
+        
+        return $this->result;
+    }
+    
+    public function getZamowienieProduktyKlienta()
+    {
+        $query = $this->db->query('select * from produkt');
+        $this->result = $query;
+        
+        return $this->result;
+    }
+        
+    public function getAdresKlienta()
+    {
+        $query = $this->db->query('select * from adres_klienta where id_klienta=(select id_klienta from klient where id_klienta=(select id_klienta from zamowienie) )');
+        $this->result = $query;
+        
+        return $this->result;
+    }
+    
     public function getCategories()
     {
         $query = $this->db->query('select * from kategoria');

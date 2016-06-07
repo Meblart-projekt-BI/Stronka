@@ -8,7 +8,6 @@ class User  extends DBObject{
     public $haslo;
     public $id_zamowienia;
     public $id_pracownika;
-    public $pesel;
     public $email;
     public $result = array();
 
@@ -67,5 +66,7 @@ class User  extends DBObject{
 			}
 		}
     }
+    
+    
 
 }

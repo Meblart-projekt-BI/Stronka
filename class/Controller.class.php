@@ -59,7 +59,15 @@ class Controller {
 					$this->page->addView($view);
 					break;
 				case 'faktura':
+                    $this->result[4]= $product->getDaneKlienta();
+                    $this->result[5]= $product->getAdresKlienta();
+                    $this->result[6]= $product->getZamowienieKlienta();
+                    $this->result[7]= $product->getZamowienieProduktyKlienta();
 					$view = new View('Faktura',$this->result);
+					$this->page->addView($view);
+					break;
+                case 'wiadomosci':
+                    $view = new View('Wiadomosci',$this->result);
 					$this->page->addView($view);
 					break;
 				default:
@@ -79,6 +87,8 @@ class Controller {
     {
     $id = htmlspecialchars($_GET['val']);
             
+            
+            
             if(isset($id))
             {
                 $product = new Product($this->db);
@@ -89,9 +99,10 @@ class Controller {
                 
                 //echo 'jestem na podstonie';
             }else{
-                $this->result[0] = $product->showProducts();
+                
                 $view = new View('Category');
             }
+            
             
             $this->page->addView($view);
             
