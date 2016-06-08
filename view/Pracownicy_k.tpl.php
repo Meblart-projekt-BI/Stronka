@@ -143,10 +143,10 @@ print "/ntet";
                 <div class="col-md-12">
                     <div class="x_content">
                     <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
+                      <table id="pracownicy_k" class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            <th class="column-title">Id_pracownika</th>
+                            <th class="column-title">ID pracownika</th>
                             <th class="column-title">Imię</th>
                             <th class="column-title">Nazwisko</th>
                               <th class="column-title">Login</th>
@@ -163,14 +163,6 @@ print "/ntet";
                             <td class=" "><?php echo $row["imie"]; ?></td>
                             <td class=" "><?php echo $row["nazwisko"]; ?></td>
                             <td class=" "><?php echo $row["login"]; ?></td>
-                            <td class=" last">
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </td>
                           </tr>
                           <?php
                           }
@@ -182,11 +174,10 @@ print "/ntet";
 
                 </div>
                 
-                <p>
-                <button type="button" class="btn btn-primary">
-                               Dodaj nowego pracownika
-                </button>
-                           
+                <p>ID pracownika:  <input type="text" id="id_pracownika" />
+                    <button type="button" class="btn btn-primary" id="dodaj">
+                        Dodaj nowego pracownika
+                    </button>
                 </p>
                 
             <div class="row">
@@ -269,7 +260,41 @@ print "/ntet";
         <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
-        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
+        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.min.js"></script>
+
+        <script type="text/javascript">
+            $('#pracownicy_k').Tabledit({
+                url: 'table_edit_pracownicyk.php',
+                //rowIdentifier: 'id_pracownika',
+                restoreButton: false,
+                buttons: {
+                    edit: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-wrench"></span>',
+                        action: 'edit'
+                    },
+                    delete: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-remove"></span>',
+                        action: 'delete'
+                    },
+                    confirm: {
+                        class: 'btn btn-sm btn-default',
+                        html: 'Are you sure?'
+                    }
+                },
+                <!--
+                                onSuccess: function(data, textStatus, jqXHR)
+                                {
+                                    $("#imagePreview").html("<img src=<?php// echo $row['image']; ?> id='imagePreview' alt='Preview Image' width='200px;/>");
+            },
+-->
+                columns: {
+                    identifier: [0, 'id_pracownika'],
+                    editable: [[1, 'imie'], [2, 'nazwisko'], [3, 'login']]
+                }
+            });
+        </script>
 
         <script type="text/javascript">
             $(function() {
@@ -302,3 +327,23 @@ print "/ntet";
                 });
             });
         </script>
+
+            <script type="text/javascript">
+                $(document).ready(function (){
+
+                    $('#dodaj').click(function()
+                    {
+                        var id_pracownika=$("#id_pracownika").val();
+                        var dataString = 'id_pracownika='+id_pracownika;
+                        {
+                            $.ajax({
+                                type: "POST",
+                                url: "register_pracownik_k.php",
+                                data: dataString,
+                                cache: false,
+                            });
+                        }
+                        return false;
+                    });
+                });
+            </script>

@@ -219,11 +219,13 @@ print "/ntet";
             });
         </script>
 
+<!--
         <script type="text/javascript">
             $('#imagePodglad').change(function(){
                 ('#imagePreview').attr('src', document.getElementById("imagePodglad").innerHTML);
             });
         </script>
+-->
 
         <script type="text/javascript">
             $('#produkty_k').Tabledit({
@@ -246,10 +248,12 @@ print "/ntet";
                         html: 'Are you sure?'
                     }
                 },
+<!--
                 onSuccess: function(data, textStatus, jqXHR)
                 {
-                    $("#imagePreview").html("<img src=<?php echo $row['image']; ?> id='imagePreview' alt='Preview Image' width='200px;/>");
+                    $("#imagePreview").html("<img src=<?php// echo $row['image']; ?> id='imagePreview' alt='Preview Image' width='200px;/>");
                 },
+-->
                 columns: {
                     identifier: [0, 'id_produktu'],
                     editable: [[1, 'nazwa_produktu'], [4, 'opis_produktu'], [5, 'image']]
