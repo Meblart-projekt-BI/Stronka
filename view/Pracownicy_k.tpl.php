@@ -27,6 +27,7 @@ else
 }
 
 $stm2 = $db->query("select * from pracownik");
+$liczbaPracownikow = $stm2->rowCount();
 
 
 
@@ -115,7 +116,7 @@ print "/ntet";
                             <a href="index.php?action=panel_kierownika&typ=klienci_zalogowani_k"><span class="badge pull-right">27</span>Klienci</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right">27</span>Pracownicy</a>
+                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right"><?php echo $liczbaPracownikow ?></span>Pracownicy</a>
                         </li>
                         <li>
                             <a href="index.php?action=panel_kierownika&typ=produkty_k"><span class="badge pull-right">2,221</span>Produkty</a>
