@@ -42,7 +42,7 @@
           <h6 class="text-center login-title">Nie jesteś jeszcze naszym klientem?</h6>
           <h4 class="text-center login-title">Zarejestruj się!</h4>
                     <div class="account-wall">
-                         <div id="error">
+                         <div id="error2">
                              <!-- error will be showen here ! -->
                           </div>
                         <div id="btn-submit">
@@ -59,7 +59,7 @@
                     <p></p>
                     <input type="password" class="form-control" id="haslo" name="haslo" placeholder="Hasło:" required>
                     <p></p>
-                    <input type="password" class="form-control" id="haslo2" placeholder="Powtórz hasło:" required autofocus>
+                    <input type="password" class="form-control" id="haslo2" name="haslo2" placeholder="Powtórz hasło:" required autofocus>
                     <p></p>
                     <button class="btn btn-lg btn-primary btn-block" id="submitButton" type="submit">Zarejestruj się</button>
         
@@ -108,33 +108,33 @@
   $("#register-form").validate({
         rules:
         {
-            user_name: {
+            imie: {
                 required: true,
                 minlength: 3
             },
-            password: {
+            haslo: {
                 required: true,
                 minlength: 8,
                 maxlength: 15
             },
-            cpassword: {
+            haslo2: {
                 required: true,
-                equalTo: '#password'
+                equalTo: '#haslo'
             },
-            user_email: {
+            email: {
                 required: true,
                 email: true
             },
         },
         messages:
         {
-            user_name: "please enter user name",
-            password:{
+            imie: "please enter user name",
+            haslo:{
                 required: "please provide a password",
                 minlength: "password at least have 8 characters"
             },
-            user_email: "please enter a valid email address",
-            cpassword:{
+            email: "please enter a valid email address",
+            haslo2:{
                 required: "please retype your password",
                 equalTo: "password doesn't match !"
             }
@@ -164,24 +164,24 @@
 
                   
 
-                        $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Email jest zajęty!</div>');
+                        $("#error2").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Email jest zajęty!</div>');
 
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz konto');
+                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz ko2nto');
 
                    
 
                 }
                 else if(data=="registered")
                 {
-
+                    $("#error2").html('');
                     $("#btn-submit").html('<img src="images/loader.gif" width="20" height="20" /> Zarejestrowalem, mozesz sie zalogowac');
                    
 
                 }
                 else{
-                        $("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');
+                        $("#error2").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');
 
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz konto');
+                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz kont2o');
 
                    
 

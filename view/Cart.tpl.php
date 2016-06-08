@@ -10,14 +10,13 @@
 					</div>
                 
 				<div class="panel-body">
-
 					<form action="" method="post">
 					<div class="row">
-						
+
 						<div class="col-xs-4">
 							<h4 class="product-name"><strong><?=$this->result[0]['nazwa_produktu'];?></strong></h4><h4><small><?=$this->result[0]['opis_produktu'];?></small></h4>
 						</div>
-						
+
                         <div class="col-xs-6">
 							<div class="col-xs-6 text-right">
 								<h6><strong>Cena produktu<span class="text-muted"><?=$this->result[0]['cena_jednostkowa']; ?></span></strong></h6>
@@ -35,13 +34,13 @@
 					<input type="hidden" name="send" value="1">
 					<hr>
 				</div>
-                
+
 				<div class="panel-footer">
-                
+
                 <div class="row text-center">
 						<div class="col-xs-9">
 						</div>
-						<div class="col-xs-3">	
+						<div class="col-xs-3">
                                 <a href="javascript:history.go(-1)" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Anuluj</a>
 						</div>
 					</div>
@@ -69,6 +68,7 @@
 						<div class="col-xs-3">
 						<button type="submit" class="btn btn-success btn-block"><?=$btnName;?></button>
 						</div>
+						<p><a href="index.php?action=showCart">przejdz do koszyka</a></p>
 					</div>
 				</div>
 				</form>

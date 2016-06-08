@@ -57,12 +57,18 @@ error_reporting(~E_NOTICE);
                                 <li>
                                     <a href="index.php?do=page">Powrót do strony głównej <i class="glyphicon glyphicon-share-alt"></i></a>
                                 </li>
-                                <li>
-                                 <?php if($_SESSION['login'] == 'yes') { ?>
-                                    <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
-                                 <?php } ?>      
+                                <li class="dropdown">
+                                   
+                    <?php if($_SESSION['login'] == 'yes') { ?>
+						<a href="index.php?action=jobholderpanel" role="button" class="dropdown-toggle" data-hover="dropdown"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i> </a>
+                    <?php } ?>                
+                                    
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                      <!--                  <li role="presentation" class="divider"></li>  Linia dzieląca -->
+                                        <li><a href="index.php">Wyloguj się</a></li>
+                                    </ul>
                                 </li>
-                                <li><a href="index.php?do=page">Wyloguj się</a></li>
                             </ul>
                         </div>
                     </div>
@@ -83,7 +89,7 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
+                            <a class="navbar-brand" href="about.html">Panel pracownika</a>
                         </div>
                   <!--      <div class="collapse navbar-collapse main-navbar-collapse">
                             <ul class="nav navbar-nav">
@@ -113,14 +119,18 @@ error_reporting(~E_NOTICE);
             <!-- left, vertical navbar & content -->
             <div class="row">
                 <!-- left, vertical navbar -->
-                 <div class="col-md-2 list-group">
-              
-                            <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                      
-                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
-                       
-                            <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
+                <div class="col-md-2 bootstrap-admin-col-left">
+                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+                        <li>
+                            <a href="index.php?do=zamowienia"><span class="badge pull-right">731</span>Zamówienia</a>
+                        </li>
+                        <li>
+                            <a href="index.php?do=faktura"><span class="badge pull-right">812</span>Faktury</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
+                        </li>
+                    </ul>
                 </div>
 
 

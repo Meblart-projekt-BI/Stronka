@@ -11,30 +11,6 @@
             </div>
         </div>
         <!-- /.row -->
-        
-         <!-- Sortowanie -->
-         <div class="row">
-            <div class="col-md-10">
-            </div>
-            <div class="col-md-2"> 
-            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-            Sortuj według: <span class="caret"></span>
-            </button>
-                <ul class="dropdown-menu">
-                <li><a href="#">Sortuj A-Z</a></li>
-                <li><a href="#">Sortuj Z-A</a></li>
-                <li><a href="#">Sortuj cena-malejąco</a></li>
-                <li><a href="#">Sortuj cena-rosnąco</a></li>
-                </ul>
-            </div>
-        </div>
-        <!--koniec sortowania -->
-
-        <div class="row">
-            <div class="col-lg-12">
-             <hr>
-            </div>
-        </div>
 
         <!-- Content Row -->
         <div class="row">
@@ -59,20 +35,18 @@
             {
             ?>
             <!-- Projects Row -->
-            <div class="col-sm-4 col-xs-6 img-portfolio">
+            <div class="col-sm-4 col-xs-6">
                     <img class="img-responsive img-hover" src="<?=$row['image'];?>"/>
                 <h3>
                     <a href="index.php?action=show&id=<?=$row['id_produktu'];?>"><?=$row['nazwa_produktu'];?></a>
                 </h3>
-                  <h5><?=$row['cena_jednostkowa'];?> zł</h5>
-                <!--        <p><?=$row['opis_produktu'];?></p> -->
+                <h5><?=$row['cena_jednostkowa'];?> zł</h5>
+              <!--  <p><?=$row['opis_produktu'];?></p> -->
             </div>
             
             <?php } ?>
             </div>
-            
-            
-        </div>      
+        </div>
         <!-- /.row -->
 
         <hr>

@@ -6220,45 +6220,4 @@ button.close {
     display: none !important;
   }
 }
-
-.container {
-  width:100%;
-  border:1px solid #d3d3d3;
-}
-.container div {
-  width:100%;
-}
-.container .header {
-  background-color:#d3d3d3;
-  padding: 2px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.container .content {
-  display: none;
-  padding : 5px;
-}
-
-#double-scroll{
-  width: 400px;
-}
-
-.wmd-view-topscroll, .wmd-view {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  width: 300px;
-  border: none 0px RED;
-}
-
-.wmd-view-topscroll { height: 20px; }
-.wmd-view { height: 200px; }
-.scroll-div1 {
-  width: 1000px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-.scroll-div2 {
-  width: 1000px;
-  height:20px;
-}
 /*# sourceMappingURL=bootstrap.css.map */

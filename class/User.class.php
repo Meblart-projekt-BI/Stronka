@@ -8,6 +8,7 @@ class User  extends DBObject{
     public $haslo;
     public $id_zamowienia;
     public $id_pracownika;
+    public $pesel;
     public $email;
     public $result = array();
 
@@ -22,16 +23,28 @@ class User  extends DBObject{
 
     function create()
     {
-        $this->data = array(
+            $this->data = array(
             'imie' => $this->imie,
             'nazwisko'  => $this->nazwisko,
             'login' => $this->login,
             'haslo' => $this->haslo,
             'email' => $this->email
         );
-        if(self::store($this->db,$this->data))
+       // $stm2 = $this->db->query("INSERT INTO ".static::$table."(imie, nazwisko, login, haslo, email) VALUES('" . $this->imie . 
+         //   "', '" . $this->nazwisko . "', '" . $this->login . "', '" . $this->haslo . "', '" . $this->email . "')");
+            
+        
+        $stm = $this->db->count("select * from ".static::$table." where email = '$this->email'");                    
+        if($stm === 0)
         {
-            echo "registered";
+            if(self::store($this->db,$this->data))  
+            {          
+                echo "registered";
+            }
+        }
+        else
+        {
+            echo "istnieje";
         }
 
     }
@@ -54,28 +67,16 @@ class User  extends DBObject{
 		{
 			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
 			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
-			$result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			$this->result = $stm;
-			
-            if($stm == 1) 
+			if($stm == 1) 
 			{
 				$_SESSION['user']=$this->email;
 				$_SESSION['login']='yes';
 				$_SESSION['pracownik'] = true;
 				$_SESSION['main'] = false;
-				
-				if($result2)
-				{
-					$this->id_pracownika = $result2["id_pracownika"];
-					if($this->id_pracownika >= 1000 && $this->id_pracownika < 2000)
-						$_SESSION['kierownik'] = TRUE;
-				}
-				
 				echo(1);
 			}
 		}
     }
-    
-    
 
 }
