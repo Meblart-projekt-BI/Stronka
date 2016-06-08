@@ -2,7 +2,6 @@
 //session_start();
 error_reporting(~E_NOTICE);
 
-$kierownik = unserialize($_SESSION['pracownik']);
 //print_r($_SESSION);
 /* ustawienie zmiennych konfiguracyjnych */
 include('config.php');
@@ -17,7 +16,7 @@ $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 //print "elo kierownik2";
 //echo $kierownik[email];
 //print $kierownik->jestKierownikiem;
-if($kierownik->jestKierownikiem)
+if($_SESSION['kierownik'])
 {
     print "elo kierownik";
 }
@@ -143,15 +142,14 @@ print "/ntet";
 
 
          <div class="col-md-12">
-                    <div class="x_content">
                     <div class="table-responsive">
-                      <table class="table table-striped table-bordered">
+                      <table id="produkty_k" class="table table-striped table-bordered">
                         <thead>
                           <tr class="headings">
-                            <th class="column-title text-center">Id_produktu</th>
-                            <th class="column-title text-center">Nazwa_produktu</th>
-                            <th class="column-title text-center">Cena_obowiązująca</th>
-                            <th class="column-title text-center">Cena_z_hurtowni</th>
+                            <th class="column-title text-center">ID produktu</th>
+                            <th class="column-title text-center">Nazwa produktu</th>
+                            <th class="column-title text-center">Cena obowiązująca</th>
+                            <th class="column-title text-center">Cena z hurtowni</th>
                             <th class="column-title text-center">Opis produktu</th>
                             <th class="column-title text-center">Dodaj obraz</th>
                             <th class="column-title text-center">Zarządzaj</th>
@@ -167,26 +165,19 @@ print "/ntet";
                             <td class=" "><?php echo $row["nazwa_produktu"]; ?></td>
                             <td class=" "><?php echo $row["id_pracownika"]; ?></td> <!-- todo jaka cena? -->
                             <td class=" "><?php echo $row["id_pracownika"]; ?></td> <!-- todo jaka cena? -->
-                            <td class=" "><?php echo $row["opis_produktu"]; ?></td>
+                            <td class=" "><?php echo $row["opis_produktu"]; ?>
+                            </td>
                             <td class=" ">
-                                <form action="upload.php" method="post" enctype="multipart/form-data">
-                                    Select image to upload:
-                                    <input type="file" name="fileToUpload" id="fileToUpload" size="chars">
-                                    <input type="submit" value="Upload Image" name="submit">
-                                </form>
 
-                                <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </td>
-                            <td class="column-row">
-                                <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-wrench"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                            </td>
+                            <div class="image-upload">
+                                <form action="upload.php" method="post" enctype="multipart/form-data">
+                                <label for="FileToUpload">
+                                    <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
+                                </label>
+                                <input id="FileToUpload" type="file" style="display: none;"/>
+                                </form>
+                            </div>
+
                           </tr>
                           <?php
                           }
@@ -197,16 +188,6 @@ print "/ntet";
                   </div>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
 
                 </div>
             </div>
@@ -228,7 +209,36 @@ print "/ntet";
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
+        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.min.js"></script>
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
+
+        <script type="text/javascript">
+            $('#produkty_k').Tabledit({
+                url: 'table_edit.php',
+                //rowIdentifier: 'id_pracownika',
+                restoreButton: false,
+                buttons: {
+                    edit: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-wrench"></span>',
+                        action: 'edit'
+                    },
+                    delete: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-remove"></span>',
+                        action: 'delete'
+                    },
+                    confirm: {
+                        class: 'btn btn-sm btn-default',
+                        html: 'Are you sure?'
+                    }
+                },
+                columns: {
+                    identifier: [0, 'id_produktu'],
+                    editable: [[1, 'nazwa_produktu'], [4, 'opis_produktu']]
+                }
+            });
+        </script>
 
         <script type="text/javascript">
             $(function() {

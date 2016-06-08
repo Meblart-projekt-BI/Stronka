@@ -2,7 +2,6 @@
 //session_start();
 error_reporting(~E_NOTICE);
 
-$kierownik = unserialize($_SESSION['pracownik']);
 //print_r($_SESSION);
 /* ustawienie zmiennych konfiguracyjnych */
 include('config.php');
@@ -17,7 +16,7 @@ $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 //print "elo kierownik2";
 //echo $kierownik[email];
 //print $kierownik->jestKierownikiem;
-if($kierownik->jestKierownikiem)
+if($_SESSION['kierownik'])
 {
     print "elo kierownik";
 }
@@ -270,6 +269,7 @@ print "/ntet";
         <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
+        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 
         <script type="text/javascript">
             $(function() {
