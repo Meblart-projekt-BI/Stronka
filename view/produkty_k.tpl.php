@@ -139,9 +139,17 @@ print "/ntet";
                             </div>
                         </div>
                     </div>
-
-
          <div class="col-md-12">
+             <div class="image-upload">
+                 <form action="upload.php" method="post" enctype="multipart/form-data" target="hiddenFrame">
+                     Przeslij obraz
+                     <label for="FileToUpload">
+                         <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
+                     </label>
+                     <input id="FileToUpload" name="FileToUpload" type="file" style="display: none;"/>
+                     <input type="submit" id="uploadFile" style="display: none;" />
+                 </form>
+             </div>
                     <div class="table-responsive">
                       <table id="produkty_k" class="table table-striped table-bordered">
                         <thead>
@@ -151,7 +159,8 @@ print "/ntet";
                             <th class="column-title text-center">Cena obowiązująca</th>
                             <th class="column-title text-center">Cena z hurtowni</th>
                             <th class="column-title text-center">Opis produktu</th>
-                            <th class="column-title text-center">Dodaj obraz</th>
+                            <th class="column-title text-center">Obraz</th>
+                            <th class="column-title text-center">Podglad obrazu</th>
                             <th class="column-title text-center">Zarządzaj</th>
                           </tr>
                         </thead>
@@ -166,17 +175,9 @@ print "/ntet";
                             <td class=" "><?php echo $row["id_pracownika"]; ?></td> <!-- todo jaka cena? -->
                             <td class=" "><?php echo $row["id_pracownika"]; ?></td> <!-- todo jaka cena? -->
                             <td class=" "><?php echo $row["opis_produktu"]; ?>
+                            <td class=" " name="imagePodglad" id="imagePodglad"><?php echo $row["image"]; ?>
                             </td>
-                            <td class=" ">
-
-                            <div class="image-upload">
-                                <form action="upload.php" method="post" enctype="multipart/form-data">
-                                <label for="FileToUpload">
-                                    <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
-                                </label>
-                                <input id="FileToUpload" type="file" style="display: none;"/>
-                                </form>
-                            </div>
+                            <td class=" "><img src=<?php echo $row["image"]; ?> id="imagePreview" name="imagePreview" alt="Preview Image" width="200px"/>
 
                           </tr>
                           <?php
@@ -213,6 +214,18 @@ print "/ntet";
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
 
         <script type="text/javascript">
+            $( "#FileToUpload" ).change(function() {
+                $( "#uploadFile" ).click();
+            });
+        </script>
+
+        <script type="text/javascript">
+            $('#imagePodglad').change(function(){
+                ('#imagePreview').attr('src', document.getElementById("imagePodglad").innerHTML);
+            });
+        </script>
+
+        <script type="text/javascript">
             $('#produkty_k').Tabledit({
                 url: 'table_edit.php',
                 //rowIdentifier: 'id_pracownika',
@@ -233,9 +246,13 @@ print "/ntet";
                         html: 'Are you sure?'
                     }
                 },
+                onSuccess: function(data, textStatus, jqXHR)
+                {
+                    $("#imagePreview").html("<img src=<?php echo $row['image']; ?> id='imagePreview' alt='Preview Image' width='200px;/>");
+                },
                 columns: {
                     identifier: [0, 'id_produktu'],
-                    editable: [[1, 'nazwa_produktu'], [4, 'opis_produktu']]
+                    editable: [[1, 'nazwa_produktu'], [4, 'opis_produktu'], [5, 'image']]
                 }
             });
         </script>

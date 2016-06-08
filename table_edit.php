@@ -38,7 +38,7 @@ print_r($input);
 error_log(print_r($input, true), 0);
 
 if ($input['action'] === 'edit') {
-    $stm2 = $db->query("UPDATE produkt set nazwa_produktu='" . $input['nazwa_produktu'] . "', opis_produktu='" . $input['opis_produktu'] . "' WHERE id_produktu='" . $input['id_produktu'] . "'");
+    $stm2 = $db->query("UPDATE produkt set nazwa_produktu='" . $input['nazwa_produktu'] . "', opis_produktu='" . $input['opis_produktu'] . "', image='" . $input['image'] . "' WHERE id_produktu='" . $input['id_produktu'] . "'");
     //$mysqli->query("UPDATE users SET username='" . $input['username'] . "', email='" . $input['email'] . "', avatar='" . $input['avatar'] . "' WHERE id='" . $input['id'] . "'");
 } else if ($input['action'] === 'delete') {
     $stm2 = $db->query("DELETE from produkt WHERE id_produktu='" . $input['id_produktu'] . "'");

@@ -2,6 +2,7 @@
     $target_dir = "image/";
     $target_file = $target_dir . basename($_FILES["FileToUpload"]["name"]);
     $uploadOk = 1;
+error_log(print_r($_FILES, true), 0);
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     // Sprawdzenie czy plik jest rzeczywiscie obrazem
     if(isset($_POST["submit"])) {
