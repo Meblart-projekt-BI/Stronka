@@ -53,11 +53,21 @@ class Controller
 		{
 			switch ($_GET['do']) {
 				case 'zamowienia':
-					$view = new View('Zamowienia', $this->result);
+                    $this->result[2]= $product->getZamowienie();
+                    $this->result[3]= $product->getDaneKlienta();
+					$view = new View('Zamowienia',$this->result);
 					$this->page->addView($view);
 					break;
 				case 'faktura':
-					$view = new View('Faktura', $this->result);
+                    $this->result[4]= $product->getDaneKlienta();
+                    $this->result[5]= $product->getAdresKlienta();
+                    $this->result[6]= $product->getZamowienieKlienta();
+                    $this->result[7]= $product->getZamowienieProduktyKlienta();
+					$view = new View('Faktura',$this->result);
+					$this->page->addView($view);
+					break;
+                case 'wiadomosci':
+                    $view = new View('Wiadomosci',$this->result);
 					$this->page->addView($view);
 					break;
 				default:

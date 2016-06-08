@@ -57,18 +57,12 @@ error_reporting(~E_NOTICE);
                                 <li>
                                     <a href="index.php?do=page">Powrót do strony głównej <i class="glyphicon glyphicon-share-alt"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                   
-                    <?php if($_SESSION['login'] == 'yes') { ?>
-						<a href="index.php?action=jobholderpanel" role="button" class="dropdown-toggle" data-hover="dropdown"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i> </a>
-                    <?php } ?>                
-                                    
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                      <!--                  <li role="presentation" class="divider"></li>  Linia dzieląca -->
-                                        <li><a href="index.php">Wyloguj się</a></li>
-                                    </ul>
+                                <li>
+                                 <?php if($_SESSION['login'] == 'yes') { ?>
+                                    <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
+                                 <?php } ?>      
                                 </li>
+                                <li><a href="index.php?do=page">Wyloguj się</a></li>
                             </ul>
                         </div>
                     </div>
@@ -89,27 +83,8 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="about.html">Panel pracownika</a>
+                            <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
                         </div>
-                  <!--      <div class="collapse navbar-collapse main-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-hover="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="presentation" class="divider"></li>
-                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
                     </div>
                 </div>
             </div><!-- /.container -->
@@ -119,18 +94,14 @@ error_reporting(~E_NOTICE);
             <!-- left, vertical navbar & content -->
             <div class="row">
                 <!-- left, vertical navbar -->
-                <div class="col-md-2 bootstrap-admin-col-left">
-                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-                        <li>
-                            <a href="index.php?do=zamowienia"><span class="badge pull-right">731</span>Zamówienia</a>
-                        </li>
-                        <li>
-                            <a href="index.php?do=faktura"><span class="badge pull-right">812</span>Faktury</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
-                        </li>
-                    </ul>
+                <div class="col-md-2 list-group">
+              
+                            <a href="index.php?do=zamowienia" class="list-group-item"><span class="badge pull-right"> <?php printf(count($this->result[2]));?></span>Zamówienia</a>
+                      
+                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
+                       
+                            <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
+                 
                 </div>
 
 
@@ -144,6 +115,12 @@ error_reporting(~E_NOTICE);
                         </div>
                     </div>
 
+            <?php
+            foreach ($this->result[2] as $row)
+            foreach ($this->result[3] as $row2)
+            {
+            ?>
+            
                     <div class="x_content">
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
@@ -151,12 +128,12 @@ error_reporting(~E_NOTICE);
                           <tr class="headings">
                             <th class="column-title">Nr faktury </th>
                             <th class="column-title">Data</th>
-                            <th class="column-title">Id zamówienia </th>
-                            <th class="column-title">Klient </th>
+                            <th class="column-title">ID klienta </th>
+                             <th class="column-title">Imię</th>
+                             <th class="column-title">Nazwisko</th>
                             <th class="column-title">Status </th>
                             <th class="column-title">Suma </th>
-                            <th class="column-title no-link last"><span class="nobr"></span>
-                            </th>
+                            <th class="column-title no-link last"><span class="nobr"></span></th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                             </th>
@@ -165,57 +142,18 @@ error_reporting(~E_NOTICE);
 
                         <tbody>
                           <tr class="even pointer">
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" "><?=$row['id_zamowienia'];?></td>
+                            <td class=" "><?=$row['data_zamowienia'];?></td>
+                            <td class=" "><?=$row['id_klienta'];?></td>
+                             <td class=" "><?=$row2['imie'];?></td>
+                              <td class=" "><?=$row2['nazwisko'];?></td>
+                            <td class=" "><?=$row['status_zamowienia'];?></td>
+                            <td class="a-right a-right ">wprowadz sumę za zakupy</td>
                             <td class=" last"><a href="#">Wygeneruj fakturę</a>
                             </td>
                           </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last"><a href="#">Wygeneruj fakturę</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last"><a href="#">Wygeneruj fakturę</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last"><a href="#">Wygeneruj fakturę</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">Wygeneruj fakturę</a>
-                            </td>
-                          </tr>
+                           <?php } ?>
+                         
                         </tbody>
                       </table>
                     </div>
