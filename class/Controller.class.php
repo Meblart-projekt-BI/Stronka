@@ -223,14 +223,28 @@ class Controller
 
 	public function panel_kierownika()
 	{
+		$this->result = array();
+		$this->result[0] = array();
 		$id = htmlspecialchars($_GET['typ']);
 		//echo $id;
-		if(isset($id) && $id != "")
+
+		$this->result[0][0] = 0; //zamowienia
+		$this->result[0][1] = 0; //faktury
+		$this->result[0][2] = 0; //klienci
+		$this->result[0][3] = $this->db->count("select * from pracownik"); //pracownicy
+		$this->result[0][4] = $this->db->count("select * from produkt");; //produkty
+		$this->result[0][5] = 0; //wiadomosci
+		$this->result[0][6] = 0; //dostawcy
+
+		error_log(print_r($this->result, true), 0);
+
+		if(!isset($id) || $id == "")
 		{
-			$view = new View($id);
-		} else {
-			$view = new View('panel_kierownika');
+			$id = 'panel_kierownika';
 		}
+
+		$view = new View($id, $this->result);
+
 		$this->page->addView($view);
 	}
 }
