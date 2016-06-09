@@ -57,12 +57,18 @@ error_reporting(~E_NOTICE);
                                 <li>
                                     <a href="index.php?do=page">Powrót do strony głównej <i class="glyphicon glyphicon-share-alt"></i></a>
                                 </li>
-                                <li>
-                                 <?php if($_SESSION['login'] == 'yes') { ?>
-                                    <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
-                                 <?php } ?>      
+                                <li class="dropdown">
+                                   
+                    <?php if($_SESSION['login'] == 'yes') { ?>
+						<a href="index.php?action=jobholderpanel" role="button" class="dropdown-toggle" data-hover="dropdown"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i> </a>
+                    <?php } ?>                
+                                    
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                      <!--                  <li role="presentation" class="divider"></li>  Linia dzieląca -->
+                                        <li><a href="index.php">Wyloguj się</a></li>
+                                    </ul>
                                 </li>
-                                <li><a href="index.php?do=page">Wyloguj się</a></li>
                             </ul>
                         </div>
                     </div>
@@ -83,8 +89,27 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
+                            <a class="navbar-brand" href="about.html">Panel pracownika</a>
                         </div>
+                  <!--      <div class="collapse navbar-collapse main-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-hover="dropdown">Dropdown <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
                     </div>
                 </div>
             </div><!-- /.container -->
@@ -94,11 +119,18 @@ error_reporting(~E_NOTICE);
             <!-- left, vertical navbar & content -->
             <div class="row">
                 <!-- left, vertical navbar -->
-                <div class="col-md-2 list-group">
-                            <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                            <a href="index.php?do=faktura" class="list-group-item"><span class="badge pull-right"><?php printf(count($this->result[0]));?></span>Faktury</a>
-                            <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
+                <div class="col-md-2 bootstrap-admin-col-left">
+                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+                        <li>
+                            <a href="index.php?do=zamowienia"><span class="badge pull-right">731</span>Zamówienia</a>
+                        </li>
+                        <li>
+                            <a href="index.php?do=faktura"><span class="badge pull-right">812</span>Faktury</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
+                        </li>
+                    </ul>
                 </div>
 
 
@@ -112,12 +144,13 @@ error_reporting(~E_NOTICE);
                         </div>
                     </div>
 
-                <section class="content invoice">
+    <section class="content invoice">
                       <!-- title row -->
                       <div class="row">
                         <div class="col-xs-12 invoice-header">
                           <h1>
                                           <i class="fa fa-globe"></i><h3>Faktura </h3>
+                                          <small class="pull-right">Data: 16/08/2016</small>
                                       </h1>
                         </div>
                         <!-- /.col -->
@@ -137,39 +170,26 @@ error_reporting(~E_NOTICE);
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
-                          Dla
+                          To
                           <address>
-                          <?php
-                            foreach ($this->result[4] as $row)
-                            foreach ($this->result[5] as $row2)
-                            {
-                          ?>
-                                          <strong><?=$row['imie'];?> <?=$row['nazwisko'];?></strong>
-                                          <br><?=$row2['ulica'];?> <?=$row2['nr_domu'];?>/<?=$row2['nr_mieszkania'];?>
-                                          <br><?=$row2['kod_pocztowy'];?> <?=$row2['miasto'];?>
-                                          <br><?=$row2['panstwo'];?>
-                                          <br><?=$row['email'];?>
-                          </address>
-                          <?php
-                            }
-                          ?>
+                                          <strong>Imię i nazwisko klienta</strong>
+                                          <br>ulica
+                                          <br>Miasto i kod pocztowy
+                                          <br>Numer telefonu
+                                          <br>Email
+                                      </address>
                         </div>
                         <!-- /.col -->
-                         <?php
-                            foreach ($this->result[6] as $row3)
-                            {
-                          ?>
                         <div class="col-sm-4 invoice-col">
-                          <b>Numer zamówienia: <?=$row3['id_zamowienia'];?> </b>
+                          <b>Faktura #nr_faktury</b>
                           <br>
                           <br>
-                          <b>Data zakupu</b> <?=$row3['data_zamowienia'];?> 
+                          <b>Nr zamówienia</b> 
                           <br>
-                          
+                          <b>Data zakupu</b> 2/22/2014
+                          <br>
+                          <b>Nr konta</b>
                         </div>
-                        <?php
-                            }
-                          ?>
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->
@@ -189,6 +209,7 @@ error_reporting(~E_NOTICE);
                               </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                               
                                 <?php
                                
@@ -208,6 +229,23 @@ error_reporting(~E_NOTICE);
                                 }
                                ?>
                           
+=======
+                              <tr>
+                                <td>1</td>
+                                <td>Call of Duty</td>
+                                <td>455-981-221</td>
+                                <td>El snort testosterone trophy driving gloves handsome gerry Richardson helvetica tousled street art master testosterone trophy driving gloves handsome gerry Richardson
+                                </td>
+                                <td>$64.50</td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>Need for Speed IV</td>
+                                <td>247-925-726</td>
+                                <td>Wes Anderson umami biodiesel</td>
+                                <td>$50.00</td>
+                              </tr>
+>>>>>>> origin/Testy
                             </tbody>
                           </table>
                         </div>
@@ -266,12 +304,15 @@ error_reporting(~E_NOTICE);
             </div>
         </div>
 
+<!-- <button type="button" class="btn btn-sm btn-primary">Back to project »</button> -->
+
         <!-- footer -->
         <div class="navbar navbar-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <footer role="contentinfo">
+                        
                         </footer>
                     </div>
                 </div>

@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Product
+ *
+ * @author Piotr
+ */
  
 class Product {
     //put your code here
@@ -30,6 +41,7 @@ class Product {
     
     public function getProducts()
     {
+<<<<<<< HEAD
         $query = $this->db->query('select * from produkt where cena_jednostkowa < 500');
         $this->result = $query;
         
@@ -81,6 +93,12 @@ class Product {
         $query = $this->db->query('select * from adres_klienta where id_klienta=(select id_klienta from klient where id_klienta=(select id_klienta from zamowienie) )');
         $this->result = $query;
         
+=======
+        //$query = $this->db->query('select * from produkt where cena_jednostkowa < 500');
+        $query = $this->db->query('select * from produkt');
+        $this->result = $query;
+
+>>>>>>> origin/Testy
         return $this->result;
     }
     

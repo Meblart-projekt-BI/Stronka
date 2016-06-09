@@ -53,6 +53,7 @@ class Controller
 		{
 			switch ($_GET['do']) {
 				case 'zamowienia':
+<<<<<<< HEAD
                     $this->result[2]= $product->getZamowienie();
                     //$this->result[3]= $product->getDaneKlienta();
 					$view = new View('Zamowienia',$this->result);
@@ -68,6 +69,13 @@ class Controller
 					break;
                 case 'wiadomosci':
                     $view = new View('Wiadomosci',$this->result);
+=======
+					$view = new View('Zamowienia', $this->result);
+					$this->page->addView($view);
+					break;
+				case 'faktura':
+					$view = new View('Faktura', $this->result);
+>>>>>>> origin/Testy
 					$this->page->addView($view);
 					break;
 				default:
@@ -237,6 +245,7 @@ class Controller
 
 		if (!isset($_POST))
 			header("Location: index.php");
+<<<<<<< HEAD
 
 		$koszyk = $_SESSION['koszyk'];
 
@@ -248,6 +257,19 @@ class Controller
 			$productWskaznik = new Product($this->db);
 			$koszyk_widok = null;
 
+=======
+
+		$koszyk = $_SESSION['koszyk'];
+
+		if (isset($koszyk) && is_array($koszyk)) {
+			$_SESSION['zamowienie']['id_dostawcy'] = $_POST['id_dostawcy'];
+			$courier = new Courier($this->db);
+			$courier_result = $courier->getCourierById($_SESSION['zamowienie']['id_dostawcy']);
+
+			$productWskaznik = new Product($this->db);
+			$koszyk_widok = null;
+
+>>>>>>> origin/Testy
 			$cart = new Cart($this->db);
 			$kwota_zamowienia = 0;
 			foreach ($koszyk as $id_produktu => $ilosc) {
@@ -262,6 +284,7 @@ class Controller
 			$this->page->addView($view);
 		} else {
 			header("Location: index.php");
+<<<<<<< HEAD
 		}
 	}
 
@@ -293,6 +316,39 @@ class Controller
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
 			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
 		}
+=======
+		}
+	}
+
+	public function order_step_4()
+	{
+		$orderDetails = new OrderDetails($this->db);
+		$order = new Order($this->db);
+
+		// Dodaję nowy wpis zamówienia potrzebnego do wyświetlania w panelu
+		$order->create(
+			1,
+			$_SESSION['id_klienta'],
+			date("Y-m-d H:i:s"),
+			'waiting',
+			$_SESSION['zamowienie']['imie'],
+			$_SESSION['zamowienie']['nazwisko'],
+			$_SESSION['zamowienie']['ulica'],
+			$_SESSION['zamowienie']['postcode'],
+			$_SESSION['zamowienie']['miasto'],
+			$_SESSION['zamowienie']['phone'],
+			$_SESSION['zamowienie']['uwagi']
+			);
+		
+		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
+		$zamowienie_id = $order->getLastOrderNumber();
+		$zamowienie_szczegoly_id = $orderDetails->getNewOrderDetailsNumber();
+
+		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych		
+		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
+			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
+		}
+>>>>>>> origin/Testy
 
 
 		if ($_SESSION['login'] != 'yes')

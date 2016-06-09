@@ -51,7 +51,11 @@
 					<div class="col-xs-9">
 					</div>
 					<div class="col-xs-3">
+<<<<<<< HEAD
 						<a href="index.php?action=category&val=1" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Kontynuuj zakupy</a>
+=======
+						<a href="index.php?action=category" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Kontynuuj zakupy</a>
+>>>>>>> origin/Testy
 					</div>
 				</div>
 				<p>
