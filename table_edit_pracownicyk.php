@@ -23,8 +23,6 @@ $input = filter_input_array(INPUT_POST);
 /* ustawienie zmiennych konfiguracyjnych */
 include('config.php');
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
-
-
 if($_SESSION['kierownik'])
 {
     print "elo kierownik";

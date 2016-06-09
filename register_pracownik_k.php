@@ -15,5 +15,4 @@ include_once "config.php";
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 
 error_log(print_r($_POST, true), 0);
-
 $db->query("INSERT INTO pracownik(id_pracownika) VALUES('" . htmlspecialchars($_POST['id_pracownika']) . "')");

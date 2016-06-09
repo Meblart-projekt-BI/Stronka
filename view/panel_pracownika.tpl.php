@@ -38,6 +38,12 @@ error_reporting(~E_NOTICE);
                 margin: 5px 0;
             }
         </style>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+           <script type="text/javascript" src="js/html5shiv.js"></script>
+           <script type="text/javascript" src="js/respond.min.js"></script>
+        <![endif]-->
     </head>
     
     <body class="bootstrap-admin-with-small-navbar">
@@ -51,13 +57,17 @@ error_reporting(~E_NOTICE);
                                 <li>
                                     <a href="index.php?do=page">Powrót do strony głównej <i class="glyphicon glyphicon-share-alt"></i></a>
                                 </li>
-                                <li>
-                                 <?php if($_SESSION['login'] == 'yes') { ?>
-                                    <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
-                                 <?php } ?>      
-                                </li>
-                                <li><a href="index.php?do=page">Wyloguj się <?  $_SESSION['login'] == 'no';?> 
-                                    </a>
+                                <li class="dropdown">
+                                   
+                    <?php if($_SESSION['login'] == 'yes') { ?>
+						<a href="index.php?action=jobholderpanel" role="button" class="dropdown-toggle" data-hover="dropdown"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i> </a>
+                    <?php } ?>                
+                                    
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                      <!--                  <li role="presentation" class="divider"></li>  Linia dzieląca -->
+                                        <li><a href="index.php">Wyloguj się</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -79,8 +89,27 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
+                            <a class="navbar-brand" href="about.html">Panel pracownika</a>
                         </div>
+                  <!--      <div class="collapse navbar-collapse main-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-hover="dropdown">Dropdown <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
                     </div>
                 </div>
             </div><!-- /.container -->
@@ -90,14 +119,18 @@ error_reporting(~E_NOTICE);
             <!-- left, vertical navbar & content -->
             <div class="row">
                 <!-- left, vertical navbar -->
-                 <div class="col-md-2 list-group">
-              
-                            <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                      
-                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
-                       
-                            <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
+                <div class="col-md-2 bootstrap-admin-col-left">
+                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+                        <li>
+                            <a href="index.php?do=zamowienia"><span class="badge pull-right">731</span>Zamówienia</a>
+                        </li>
+                        <li>
+                            <a href="index.php?do=faktura"><span class="badge pull-right">812</span>Faktury</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
+                        </li>
+                    </ul>
                 </div>
 
 
@@ -113,7 +146,10 @@ error_reporting(~E_NOTICE);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            
+                            <div class="bootstrap-admin-back-to-parent panel panel-default">
+                                <span class="text">This document is displayed in context of <a href="#" class="">Project name</a></span>
+                                <a class="action" href="#"><button type="button" class="btn btn-sm btn-primary">Back to project »</button></a>
+                            </div>
                         </div>
                     </div>
 
