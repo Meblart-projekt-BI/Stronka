@@ -184,22 +184,25 @@ error_reporting(~E_NOTICE);
                                 <th>Product</th>
                                 <th>Id_produktu</th>
                                 <th style="width: 59%">Opis</th>
+                              
                                 <th>Suma</th>
                               </tr>
                             </thead>
                             <tbody>
                               
                                 <?php
+                               
                                 foreach ($this->result[7] as $row4)
                                 {
                                 ?>
                               
                                 <tr>
-                                <td>Ilosc produktu</td>
+                                <td>    </td>
                                 <td><?=$row4['nazwa_produktu'];?></td>
                                 <td><?=$row4['id_produktu'];?></td>
                                 <td><?=$row4['opis_produktu'];?></td>
-                                <td>$Suma za produkt</td>
+                               
+                                <td>Suma za zakupy</td>
                                 </tr>
                                <?php
                                 }

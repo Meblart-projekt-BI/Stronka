@@ -26,6 +26,13 @@ error_reporting(~E_NOTICE);
     <script src="js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
 
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body>
@@ -61,12 +68,16 @@ error_reporting(~E_NOTICE);
                         <a href="index.php?action=login">Zaloguj się</a>
                     <?php } ?>
 					</li>
-				    
-                    <?php if($_SESSION['pracownik'])  { ?>
+                    <li>
+                    <?php if($_SESSION['login'] == 'yes')  { ?>
+                        <a href="index.php?action=logout">Wyloguj się</a>
+					<?php } ?>
+					</li>
+				<?php if($_SESSION['pracownik'])  { ?>
 					<li>
 						<a href="index.php?do=panel">Panel pracownika</a>
 					</li>
-				    <?php } ?>
+				<?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

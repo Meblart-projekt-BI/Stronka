@@ -96,7 +96,7 @@ error_reporting(~E_NOTICE);
                 <!-- left, vertical navbar -->
                 <div class="col-md-2 list-group">
               
-                            <a href="index.php?do=zamowienia" class="list-group-item"><span class="badge pull-right"> <?php printf(count($this->result[2]));?></span>Zamówienia</a>
+                            <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
                       
                             <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
                        
@@ -115,11 +115,7 @@ error_reporting(~E_NOTICE);
                         </div>
                     </div>
 
-            <?php
-            foreach ($this->result[2] as $row)
-            foreach ($this->result[3] as $row2)
-            {
-            ?>
+           
             
                     <div class="x_content">
                     <div class="table-responsive">
@@ -139,20 +135,23 @@ error_reporting(~E_NOTICE);
                             </th>
                           </tr>
                         </thead>
-
+            <?php
+            foreach ($this->result[2] as $row)
+            {
+            ?>
                         <tbody>
-                          <tr class="even pointer">
+                          <tr class="even pointer table table-striped jambo_table">
                             <td class=" "><?=$row['id_zamowienia'];?></td>
                             <td class=" "><?=$row['data_zamowienia'];?></td>
                             <td class=" "><?=$row['id_klienta'];?></td>
-                             <td class=" "><?=$row2['imie'];?></td>
-                              <td class=" "><?=$row2['nazwisko'];?></td>
+                            <td class=" "><?=$row2['imie'];?></td>
+                            <td class=" "><?=$row2['nazwisko'];?></td>
                             <td class=" "><?=$row['status_zamowienia'];?></td>
                             <td class="a-right a-right ">wprowadz sumę za zakupy</td>
                             <td class=" last"><a href="#">Wygeneruj fakturę</a>
                             </td>
                           </tr>
-                           <?php } ?>
+            <?php } ?>
                          
                         </tbody>
                       </table>

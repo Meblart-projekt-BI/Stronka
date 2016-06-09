@@ -28,7 +28,7 @@ else
 
 $stm2 = $db->query("select * from pracownik");
 
-//error_log(print_r($this->result, true), 0);
+
 
 //print_r($_SESSION['pracownik']->email);
 //print_r( $_SESSION['pracownik2']->email);
@@ -75,6 +75,25 @@ print "/ntet";
                             </button>
                             <a class="navbar-brand" href="index.php?action=panel_kierownika">Panel kierownika</a>
                         </div>
+                  <!--      <div class="collapse navbar-collapse main-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-hover="dropdown">Dropdown <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation" class="dropdown-header">Dropdown header</li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
                     </div>
                 </div>
             </div><!-- /.container -->
@@ -87,25 +106,25 @@ print "/ntet";
                 <div class="col-md-2 bootstrap-admin-col-left">
                     <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=zamowienia_k"><span class="badge pull-right"><?php echo $this->result[0][0] ?></span>Zamówienia</a>
+                            <a href="index.php?action=panel_kierownika&typ=zamowienia_k"><span class="badge pull-right">731</span>Zamówienia</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=faktura_k"><span class="badge pull-right"><?php echo $this->result[0][1] ?></span>Faktury</a>
+                            <a href="index.php?action=panel_kierownika&typ=faktura_k"><span class="badge pull-right">812</span>Faktury</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=klienci_zalogowani_k"><span class="badge pull-right"><?php echo $this->result[0][2] ?></span>Klienci</a>
+                            <a href="index.php?action=panel_kierownika&typ=klienci_zalogowani_k"><span class="badge pull-right">27</span>Klienci</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right"><?php echo $this->result[0][3] ?></span>Pracownicy</a>
+                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right">27</span>Pracownicy</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=produkty_k"><span class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
+                            <a href="index.php?action=panel_kierownika&typ=produkty_k"><span class="badge pull-right">2,221</span>Produkty</a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
+                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge pull-right"><?php echo $this->result[0][6] ?></span>Dostawcy</a>
+                            <a href="#"><span class="badge pull-right">11</span>Dostawcy</a>
                         </li>
                     </ul>
                 </div>

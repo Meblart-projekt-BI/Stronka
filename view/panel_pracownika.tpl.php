@@ -38,12 +38,6 @@ error_reporting(~E_NOTICE);
                 margin: 5px 0;
             }
         </style>
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-           <script type="text/javascript" src="js/html5shiv.js"></script>
-           <script type="text/javascript" src="js/respond.min.js"></script>
-        <![endif]-->
     </head>
     
     <body class="bootstrap-admin-with-small-navbar">
@@ -62,7 +56,11 @@ error_reporting(~E_NOTICE);
                                     <a href="#"><i class="glyphicon glyphicon-user"></i> Witaj: <?=$_SESSION['user']; ?> </i></a>
                                  <?php } ?>      
                                 </li>
-                                <li><a href="index.php?do=page">Wyloguj się</a></li>
+                                <li>
+                                <?php if($_SESSION['login'] == 'yes')  { ?>
+                                    <a href="index.php?action=logout">Wyloguj się</a>
+					           <?php } ?>
+                               </li>
                             </ul>
                         </div>
                     </div>

@@ -70,12 +70,12 @@ class Product {
     
     public function getZamowienieProduktyKlienta()
     {
-        $query = $this->db->query('select * from produkt');
+        $query = $this->db->query('select * from produkt where id_produktu=(select id_produktu from pozycja_zamowienia)');
         $this->result = $query;
         
         return $this->result;
     }
-        
+ 
     public function getAdresKlienta()
     {
         $query = $this->db->query('select * from adres_klienta where id_klienta=(select id_klienta from klient where id_klienta=(select id_klienta from zamowienie) )');
