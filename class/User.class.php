@@ -84,4 +84,25 @@ class User  extends DBObject{
 		}
     }
 
+    public function getUserById($id)
+    {
+        $query = $this->db->query('select * from klient where id_klienta = "'.$id.'"');
+        $this->result = $query;
+
+        return $this->result->fetchAll();
+    }
+
+    public function updateUserById($id, $email, $password, $street, $nr_domu, $nr_mieszkania, $kod_pocztowy, $city, $country)
+    {
+        // Jeżeli przesłano hasło nastepuje aktualizacja użytkownika wraz z hasłem
+        if (strlen($password) > 0) {
+            $password = md5($password);
+            $query = $this->db->query("UPDATE klient SET email = '$email', haslo = '$password', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = $id");
+        }
+        // W przeciwnym wypadku następuje aktualizacja bez zmiany hasła
+        else
+            $query = $this->db->query("UPDATE klient SET email = '$email', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = $id");
+        $query->fetch();
+    }
+
 }

@@ -47,8 +47,9 @@
                     <?php } ?>
                     <br />
                     <h4>Szczegóły wysyłki:</h4>
-                    <p><strong>Koszt wysyłki:</strong> <?= $this->result['kwota_zamowienia']; ?> pln</p>
+                    <p><strong>Koszt zamówienia:</strong> <?= $this->result['kwota_zamowienia']; ?> pln</p>
                     <p><strong>Sposób dostawy:</strong> <?= $this->result['courier']['nazwa_dostawcy']; ?> <small>(<?= $this->result['courier']['cena_dostawy']; ?> pln)</small></p>
+                    <p><strong>Całkowita kwota do zapłaty:</strong> <?= $this->result['calkowita_kwota']; ?> pln</p>
                 </div>
                 <div class="text-center">
                     <form action="index.php?action=order_step_4" method="POST">

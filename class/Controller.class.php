@@ -32,10 +32,6 @@ class Controller
 
 	public function page()
 	{
-		/* 
-		$news = new News($this->db);
-		$this->result = $news->getNews();
-                 */
 
 		if ($_GET['do'] == 'page') // powrot na str. glowna
 			$_SESSION['main'] = true;
@@ -53,7 +49,6 @@ class Controller
 		{
 			switch ($_GET['do']) {
 				case 'zamowienia':
-<<<<<<< HEAD
                     $this->result[2]= $product->getZamowienie();
                     //$this->result[3]= $product->getDaneKlienta();
 					$view = new View('Zamowienia',$this->result);
@@ -69,13 +64,6 @@ class Controller
 					break;
                 case 'wiadomosci':
                     $view = new View('Wiadomosci',$this->result);
-=======
-					$view = new View('Zamowienia', $this->result);
-					$this->page->addView($view);
-					break;
-				case 'faktura':
-					$view = new View('Faktura', $this->result);
->>>>>>> origin/Testy
 					$this->page->addView($view);
 					break;
 				default:
@@ -245,7 +233,6 @@ class Controller
 
 		if (!isset($_POST))
 			header("Location: index.php");
-<<<<<<< HEAD
 
 		$koszyk = $_SESSION['koszyk'];
 
@@ -257,19 +244,6 @@ class Controller
 			$productWskaznik = new Product($this->db);
 			$koszyk_widok = null;
 
-=======
-
-		$koszyk = $_SESSION['koszyk'];
-
-		if (isset($koszyk) && is_array($koszyk)) {
-			$_SESSION['zamowienie']['id_dostawcy'] = $_POST['id_dostawcy'];
-			$courier = new Courier($this->db);
-			$courier_result = $courier->getCourierById($_SESSION['zamowienie']['id_dostawcy']);
-
-			$productWskaznik = new Product($this->db);
-			$koszyk_widok = null;
-
->>>>>>> origin/Testy
 			$cart = new Cart($this->db);
 			$kwota_zamowienia = 0;
 			foreach ($koszyk as $id_produktu => $ilosc) {
@@ -279,12 +253,14 @@ class Controller
 				$koszyk_widok[$id_produktu]['ilosc'] = $ilosc;
 				$kwota_zamowienia += $ilosc * $produkt[0]['cena_jednostkowa'];
 			}
+			
+			$calkowita_kwota = $kwota_zamowienia + $courier_result[0]['cena_dostawy'];
+			$_SESSION['zamowienie']['calkowita_kwota'] = $calkowita_kwota;
 
-			$view = new View('order_step_3', ["koszyk_widok" => $koszyk_widok, "kwota_zamowienia" => $kwota_zamowienia, "courier" => $courier_result[0]]);
+			$view = new View('order_step_3', ["koszyk_widok" => $koszyk_widok, "kwota_zamowienia" => $kwota_zamowienia, "courier" => $courier_result[0], "calkowita_kwota" => $calkowita_kwota]);
 			$this->page->addView($view);
 		} else {
 			header("Location: index.php");
-<<<<<<< HEAD
 		}
 	}
 
@@ -295,10 +271,11 @@ class Controller
 
 		// Dodaję nowy wpis zamówienia potrzebnego do wyświetlania w panelu
 		$order->create(
-			1,
+			$_SESSION['zamowienie']['id_dostawcy'],
 			$_SESSION['id_klienta'],
 			date("Y-m-d H:i:s"),
 			'waiting',
+			$_SESSION['zamowienie']['calkowita_kwota'],
 			$_SESSION['zamowienie']['imie'],
 			$_SESSION['zamowienie']['nazwisko'],
 			$_SESSION['zamowienie']['ulica'],
@@ -306,7 +283,7 @@ class Controller
 			$_SESSION['zamowienie']['miasto'],
 			$_SESSION['zamowienie']['phone'],
 			$_SESSION['zamowienie']['uwagi']
-			);
+		);
 		
 		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
 		$zamowienie_id = $order->getLastOrderNumber();
@@ -316,39 +293,6 @@ class Controller
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
 			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
 		}
-=======
-		}
-	}
-
-	public function order_step_4()
-	{
-		$orderDetails = new OrderDetails($this->db);
-		$order = new Order($this->db);
-
-		// Dodaję nowy wpis zamówienia potrzebnego do wyświetlania w panelu
-		$order->create(
-			1,
-			$_SESSION['id_klienta'],
-			date("Y-m-d H:i:s"),
-			'waiting',
-			$_SESSION['zamowienie']['imie'],
-			$_SESSION['zamowienie']['nazwisko'],
-			$_SESSION['zamowienie']['ulica'],
-			$_SESSION['zamowienie']['postcode'],
-			$_SESSION['zamowienie']['miasto'],
-			$_SESSION['zamowienie']['phone'],
-			$_SESSION['zamowienie']['uwagi']
-			);
-		
-		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
-		$zamowienie_id = $order->getLastOrderNumber();
-		$zamowienie_szczegoly_id = $orderDetails->getNewOrderDetailsNumber();
-
-		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych		
-		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
-			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
-		}
->>>>>>> origin/Testy
 
 
 		if ($_SESSION['login'] != 'yes')
@@ -369,9 +313,6 @@ class Controller
 			header("Location: index.php");
 		}
 
-		// Usuwam zawartość koszyka i szczegółów podanych podczas realizacji zamówienia
-		unset($_SESSION['zamowienie']);
-		unset($_SESSION['koszyk']);
 	}
 
 	public function show()
@@ -427,13 +368,42 @@ class Controller
 
 	public function userpanel()
 	{
-		$view = new View('userpanel');
+		if ($_SESSION['login'] != 'yes')
+			header("Location: index.php");
+
+		$user = new User($this->db);
+		// Pobranie wszystkich szczegółów użytkownika
+		$user_details = $user->getUserById($_SESSION['id_klienta']);
+
+		// Jeżeli został przesłany formularz zmiany danych użytkonika
+		if (isset($_POST) && $_POST['update_user'] == 1) {
+			$email = $_POST['email'];
+			$email2 = $_POST['email2'];
+			$password = $_POST['password'];
+			$password2 = $_POST['password2'];
+			$street = $_POST['street'];
+			$nr_domu = $_POST['nr_domu'];
+			$nr_mieszkania = $_POST['nr_mieszkania'];
+			$kod_pocztowy = $_POST['kod_pocztowy'];
+			$city = $_POST['city'];
+			$country = $_POST['country'];
+			$user->updateUserById($_SESSION['id_klienta'], $email, $password, $street, $nr_domu, $nr_mieszkania, $kod_pocztowy, $city, $country);
+			header("Location: index.php?action=userpanel");
+		}
+
+		$view = new View('userpanel', ["klient" => $user_details[0]]);
 		$this->page->addView($view);
 	}
 
 	public function historia()
 	{
-		$view = new View('historia');
+		if ($_SESSION['login'] != 'yes')
+			header("Location: index.php");
+
+		$order = new Order($this->db);
+		$orders = $order->getOrdersByUserId($_SESSION['id_klienta']);
+
+		$view = new View('historia', ["zamowienia" => $orders]);
 		$this->page->addView($view);
 	}
 }
