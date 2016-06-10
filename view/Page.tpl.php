@@ -53,7 +53,7 @@ error_reporting(~E_NOTICE);
                         <a href="index.php">Strona główna</a>
                     </li>
 					<li>
-						<a href="index.php?action=category">Kategorie produktów</a>
+						<a href="index.php?action=category&val=1">Kategorie produktów</a>
 					</li>
 					<li>
                         <a href="index.php?action=oNas">O nas</a>

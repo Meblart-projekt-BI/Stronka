@@ -25,9 +25,7 @@ class Cart extends Product{
     
     public function addItemToCart($id)
     {
-        //insert do bazy danych
-
-        //$this->db->query("insert into koszyk (id_produktu, id_klienta, ilosc)");
+       
 
         return $this->getProductById($id);
     }

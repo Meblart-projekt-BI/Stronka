@@ -48,7 +48,6 @@ if ( isset($_GET['action']) ) {
 	$action = $_GET['action'];
 	$controller->$action();
 }else{
-    //wyswietlamy liste newsow
     $controller->page();
 }
 
