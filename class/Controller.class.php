@@ -409,6 +409,11 @@ class Controller
 
 	public function panel_kierownika()
 	{
+		if (isset($_GET['do']) && isset($_GET['do']) != "") {
+			$_SESSION['main'] = false;
+			$this->page();
+			return;
+		}
 		$this->result = array();
 		$this->result[0] = array();
 		$id = htmlspecialchars($_GET['typ']);
