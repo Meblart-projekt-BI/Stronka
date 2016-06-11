@@ -106,25 +106,25 @@ print "/ntet";
                 <div class="col-md-2 bootstrap-admin-col-left">
                     <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=zamowienia_k"><span class="badge pull-right">731</span>Zamówienia</a>
+                            <a href="index.php?action=panel_kierownika&typ=zamowienia_k"><span class="badge pull-right"><?php echo $this->result[0][0] ?></span>Zamówienia</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=faktura_k"><span class="badge pull-right">812</span>Faktury</a>
+                            <a href="index.php?action=panel_kierownika&typ=faktura_k"><span class="badge pull-right"><?php echo $this->result[0][1] ?></span>Faktury</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=klienci_zalogowani_k"><span class="badge pull-right">27</span>Klienci</a>
+                            <a href="index.php?action=panel_kierownika&typ=klienci_k"><span class="badge pull-right"><?php echo $this->result[0][2] ?></span>Klienci</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right">27</span>Pracownicy</a>
+                            <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span class="badge pull-right"><?php echo $this->result[0][3] ?></span>Pracownicy</a>
                         </li>
                         <li>
-                            <a href="index.php?action=panel_kierownika&typ=produkty_k"><span class="badge pull-right">2,221</span>Produkty</a>
+                            <a href="index.php?action=panel_kierownika&typ=produkty_k"><span class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge pull-right">2,221</span>Wiadomości</a>
+                            <a href="#"><span class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge pull-right">11</span>Dostawcy</a>
+                            <a href="#"><span class="badge pull-right"><?php echo $this->result[0][6] ?></span>Dostawcy</a>
                         </li>
                     </ul>
                 </div>
@@ -142,8 +142,8 @@ print "/ntet";
 
                 <div class="col-md-12">
                     <div class="x_content">
-                    <div class="table-responsive">
-                      <table id="pracownicy_k" class="table table-striped jambo_table bulk_action">
+                    <div class="table-responsive" style="height:400px; overflow:auto;">
+                      <table id="pracownicy_k" class="table table-striped table-bordered">
                         <thead>
                           <tr class="headings">
                             <th class="column-title">ID pracownika</th>
@@ -260,11 +260,12 @@ print "/ntet";
         <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
-        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.min.js"></script>
+        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 
         <script type="text/javascript">
             $('#pracownicy_k').Tabledit({
-                url: 'table_edit_pracownicyk.php',
+                url: 'table_edit.php',
+                typ: 'pracownicy',
                 //rowIdentifier: 'id_pracownika',
                 restoreButton: false,
                 buttons: {
@@ -283,15 +284,29 @@ print "/ntet";
                         html: 'Are you sure?'
                     }
                 },
-                <!--
-                                onSuccess: function(data, textStatus, jqXHR)
-                                {
-                                    $("#imagePreview").html("<img src=<?php// echo $row['image']; ?> id='imagePreview' alt='Preview Image' width='200px;/>");
-            },
--->
                 columns: {
                     identifier: [0, 'id_pracownika'],
                     editable: [[1, 'imie'], [2, 'nazwisko'], [3, 'login']]
+                },
+                onSuccess: function(action, data, textStatus, jqXHR) {
+                    if(action === "delete")
+                    {
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 500);
+                    }
+                    // Occurs whenever it is made a successful ajax request (edit or remove action).
+                    console.log(action);
+                    //console.log(data);
+                    //console.log(textStatus);
+                    //console.log(jqXHR);
+                    //window.location.reload();
+                },
+                onFail: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    //window.location.reload();
                 }
             });
         </script>

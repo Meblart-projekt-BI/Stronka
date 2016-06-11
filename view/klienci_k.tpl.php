@@ -18,24 +18,15 @@ $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 //print $kierownik->jestKierownikiem;
 if($_SESSION['kierownik'])
 {
-    print "elo kierownik";
+print "elo kierownik";
 }
 else
 {
-    session_destroy();
-    header("Location: index.php");
+session_destroy();
+header("Location: index.php");
 }
 
-$stm2 = $db->query("select * from produkt");
-
-//$result2 = $stm2->fetch(PDO::FETCH_ASSOC);
-//error_log(print_r($result2, true), 0);
-
-
-
-//print_r($_SESSION['pracownik']->email);
-//print_r( $_SESSION['pracownik2']->email);
-print "/ntet";
+$stm2 = $db->query("select * from klient");
 ?>
 
         <!-- small navbar -->
@@ -138,58 +129,48 @@ print "/ntet";
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="page-header">
-                                <h1>Panel kierownika</h1>
+                                <h1>Klienci</h1>
                             </div>
                         </div>
                     </div>
-         <div class="col-md-12">
-             <div class="image-upload">
-                 <form action="upload.php" method="post" enctype="multipart/form-data" target="hiddenFrame">
-                     Przeslij obraz
-                     <label for="FileToUpload">
-                         <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
-                     </label>
-                     <input id="FileToUpload" name="FileToUpload" type="file" style="display: none;"/>
-                     <input type="submit" id="uploadFile" style="display: none;" />
-                 </form>
-             </div>
 
+                <div class="col-md-12">
+                    <div class="x_content">
                     <div class="table-responsive" style="height:400px; overflow:auto;">
-                      <table id="produkty_k" class="table table-striped table-bordered">
+                      <table id="klienci_k" class="table table-striped  table-bordered">
                         <thead>
                           <tr class="headings">
-                            <th class="column-title text-center">ID produktu</th>
-                            <th class="column-title text-center">Nazwa produktu</th>
-                            <th class="column-title text-center">Cena jednostkowa</th>
-                            <th class="column-title text-center">Opis produktu</th>
-                            <th class="column-title text-center">Obraz</th>
-                            <th class="column-title text-center">Podglad obrazu</th>
-                            <th class="column-title text-center">Zarządzaj</th>
+                            <th class="column-title">ID klienta</th>
+                            <th class="column-title">Imię</th>
+                            <th class="column-title">Nazwisko</th>
+                            <th class="column-title">Login</th>
+                            <th class="column-title">E-mail</th>
+                            <th class="column-title">Zarządzaj</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <?php
-                          foreach($stm2 as $row)
-                          {
-                          ?>
-                          <tr class="table-row">
-                            <td class=" "><?php echo $row["id_produktu"]; ?></td>
-                            <td class=" "><?php echo $row["nazwa_produktu"]; ?></td>
-                            <td class=" "><?php echo $row["cena_jednostkowa"]; ?></td>
-                            <td class=" "><?php echo $row["opis_produktu"]; ?>
-                            <td class=" " name="imagePodglad" id="imagePodglad"><?php echo $row["image"]; ?>
-                            </td>
-                            <td class=" "><img src=<?php echo $row["image"]; ?> id="imagePreview" name="imagePreview" alt="Preview Image" width="200px"/>
 
-                          </tr>
-                          <?php
-                          }
-                          ?>
+                        <tbody>
+                        <?php
+                        foreach($stm2 as $row) {
+                            ?>
+                            <tr class="even pointer">
+                                <td class=" "><?php echo $row["id_klienta"]; ?></td>
+                                <td class=" "><?php echo $row["imie"]; ?></td>
+                                <td class=" "><?php echo $row["nazwisko"]; ?></td>
+                                <td class=" "><?php echo $row["login"]; ?></td>
+                                <td class=" "><?php echo $row["email"]; ?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                         </tbody>
                       </table>
                     </div>
+                  </div>
+
                 </div>
-                </div>
+                
+            <div class="row">
 
                 </div>
             </div>
@@ -211,37 +192,13 @@ print "/ntet";
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
-        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
         <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
+        <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 
         <script type="text/javascript">
-            $( "#FileToUpload" ).change(function() {
-                $( "#uploadFile" ).click();
-            });
-
-        </script>
-<!--
-<script type="text/javascript" src="js/jquery.ba-resize.min.js"></script>
-<script type="text/javascript" src="js/jquery.doubleScroll.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        //$('.double-scroll').doubleScroll();
-        $('.double-scroll').doubleScroll({resetOnWindowResize: true});
-    });
-</script>
-
-
-        <script type="text/javascript">
-            $('#imagePodglad').change(function(){
-                ('#imagePreview').attr('src', document.getElementById("imagePodglad").innerHTML);
-            });
-        </script>
--->
-
-        <script type="text/javascript">
-            $('#produkty_k').Tabledit({
+            $('#klienci_k').Tabledit({
                 url: 'table_edit.php',
-                typ: 'produkty',
+                typ: 'klienci',
                 //rowIdentifier: 'id_pracownika',
                 restoreButton: false,
                 buttons: {
@@ -261,8 +218,8 @@ print "/ntet";
                     }
                 },
                 columns: {
-                    identifier: [0, 'id_produktu'],
-                    editable: [[1, 'nazwa_produktu'], [2, 'cena_jednostkowa'], [3, 'opis_produktu'], [4, 'image']]
+                    identifier: [0, 'id_klienta'],
+                    editable: [[1, 'imie'], [2, 'nazwisko'], [3, 'login'], [4, 'email']]
                 },
                 onSuccess: function(action, data, textStatus, jqXHR) {
                     if(action === "delete")
