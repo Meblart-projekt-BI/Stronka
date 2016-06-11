@@ -14,5 +14,16 @@ include_once "config.php";
 
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 
-error_log(print_r($_POST, true), 0);
-$db->query("INSERT INTO pracownik(id_pracownika) VALUES('" . htmlspecialchars($_POST['id_pracownika']) . "')");
+$user = new User($db);
+$data = array(
+    'id_pracownika' => htmlspecialchars($_POST['id_pracownika']),
+    'id_klienta' => 0,
+    'imie' => '',
+    'nazwisko' => '',
+    'login' => '',
+    'haslo' => 'maslowniczka25',
+    'id_szefa' => 0,
+    'id_magazynu' => 0,
+    'email' => ''
+);
+$user->create($data, 'pracownik');

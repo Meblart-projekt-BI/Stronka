@@ -68,11 +68,11 @@ $stm2 = $db->query("select * from klient");
         <div class="col-md-2 bootstrap-admin-col-left">
             <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
                 <li>
-                    <a href="index.php?do=zamowienia"><span
+                    <a href="index.php?action=panel_kierownika&do=zamowienia"><span
                             class="badge pull-right"><?php echo $this->result[0][0] ?></span>Zamówienia</a>
                 </li>
                 <li>
-                    <a href="index.php?do=faktura"><span
+                    <a href="index.php?action=panel_kierownika&do=faktura"><span
                             class="badge pull-right"><?php echo $this->result[0][1] ?></span>Faktury</a>
                 </li>
                 <li>
@@ -161,7 +161,6 @@ $stm2 = $db->query("select * from klient");
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
-    <script type="text/javascript" src="vendors/jGrowl/jquery.jgrowl.js"></script>
     <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 
     <script type="text/javascript">
@@ -196,37 +195,5 @@ $stm2 = $db->query("select * from klient");
                     }, 500);
                 }
             }
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(function () {
-            $('.tooltip').tooltip();
-            $('.tooltip-left').tooltip({placement: 'left'});
-            $('.tooltip-right').tooltip({placement: 'right'});
-            $('.tooltip-top').tooltip({placement: 'top'});
-            $('.tooltip-bottom').tooltip({placement: 'bottom'});
-
-            $('.popover-left').popover({placement: 'left', trigger: 'hover'});
-            $('.popover-right').popover({placement: 'right', trigger: 'hover'});
-            $('.popover-top').popover({placement: 'top', trigger: 'hover'});
-            $('.popover-bottom').popover({placement: 'bottom', trigger: 'hover'});
-
-            $('.notification').click(function () {
-                var $id = $(this).attr('id');
-                switch ($id) {
-                    case 'notification-sticky':
-                        $.jGrowl("Stick this!", {sticky: true});
-                        break;
-
-                    case 'notification-header':
-                        $.jGrowl("A message with a header", {header: 'Important'});
-                        break;
-
-                    default:
-                        $.jGrowl("Hello world!");
-                        break;
-                }
-            });
         });
     </script>

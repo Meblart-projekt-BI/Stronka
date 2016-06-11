@@ -59,7 +59,7 @@ if($input['typ'] === 'produkty')
 } else if($input['typ'] === 'pracownicy')
 {
     if ($input['action'] === 'edit') {
-        $sql = "UPDATE pracownik set imie='" . $input['imie'] . "', nazwisko='" . $input['nazwisko'] . "', login='" . $input['login'] . "' WHERE id_pracownika='" . $input['id_pracownika'] . "'";
+        $sql = "UPDATE pracownik set imie='" . $input['imie'] . "', nazwisko='" . $input['nazwisko'] . "', login='" . $input['login'] . "', email='" . $input['email'] . "' WHERE id_pracownika='" . $input['id_pracownika'] . "'";
     } else if ($input['action'] === 'delete') {
         $sql = "DELETE from pracownik WHERE id_pracownika='" . $input['id_pracownika'] . "'";
     }

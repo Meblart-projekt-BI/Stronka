@@ -21,24 +21,29 @@ class User  extends DBObject{
         $this->db = $db;
     }
 
-    function create()
+    function create($data, $table)
     {
+        $saveTable = static::$table;
+        if(isset($data, $table) && $table !== '')
+        {
+            $this->data = $data;
+            static::$table = $table;
+        }
+        else {
             $this->data = array(
-            'imie' => $this->imie,
-            'nazwisko'  => $this->nazwisko,
-            'login' => $this->login,
-            'haslo' => $this->haslo,
-            'email' => $this->email
-        );
-       // $stm2 = $this->db->query("INSERT INTO ".static::$table."(imie, nazwisko, login, haslo, email) VALUES('" . $this->imie . 
-         //   "', '" . $this->nazwisko . "', '" . $this->login . "', '" . $this->haslo . "', '" . $this->email . "')");
-            
+                'imie' => $this->imie,
+                'nazwisko' => $this->nazwisko,
+                'login' => $this->login,
+                'haslo' => $this->haslo,
+                'email' => $this->email
+            );
+        }
         
-        $stm = $this->db->count("select * from ".static::$table." where email = '$this->email'");                    
+        $stm = $this->db->count("select * from " . static::$table . " where email = '$this->email'");
         if($stm === 0)
         {
             if(self::store($this->db,$this->data))  
-            {          
+            {
                 echo "registered";
             }
         }
@@ -47,23 +52,25 @@ class User  extends DBObject{
             echo "istnieje";
         }
 
+        static::$table = $saveTable;
+
     }
 
     function login()
     {
         $pass = md5($this->haslo);
 
-        $stm2 = $this->db->query("select * from ".static::$table." where email = '$this->email' and haslo = '$pass'");
-        $stm = $this->db->count("select * from ".static::$table." where email = '$this->email' and haslo = '$pass'");
-        
         // Jeżeli udało się prawidłowo zalogowac użytkonika pobieram jego wszystkie szczegóły w celu ustawienia w sesji jego id który będzie wykorzystywany przy zamówieniach
         $stm3 = $this->db->query("select * from ".static::$table." where email = '$this->email' and haslo = '$pass'");
+        $stm = $stm3->rowCount();
+
+        $result2 = $stm3->fetch(PDO::FETCH_ASSOC);
         $this->result = $stm;
   
         if($stm == 1) // klient
         {
             $klient = $stm3->fetch();
-            $_SESSION['user']=$this->email;
+            $_SESSION['user']=$result2['login'];
             $_SESSION['id_klienta']=$klient['id_klienta'];
             $_SESSION['login']='yes';
 			echo(1);
@@ -71,12 +78,12 @@ class User  extends DBObject{
 		else //pracownik
 		{
 			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
-			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
+			$stm = $stm2->rowCount();
             $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			$this->result = $stm;
 			if($stm == 1) 
 			{
-				$_SESSION['user']=$this->email;
+				$_SESSION['user']=$result2['login'];
 				$_SESSION['login']='yes';
 				$_SESSION['pracownik'] = true;
 				$_SESSION['main'] = false;
