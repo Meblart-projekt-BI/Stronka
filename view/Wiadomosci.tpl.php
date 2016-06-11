@@ -80,38 +80,113 @@ error_reporting(~E_NOTICE);
                             <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
                        
                             <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
+                            
+                            <a href="#" class="btn  btn-block btn-danger" role="button"><i class="glyphicon glyphicon-edit"></i> Napisz wiadomość</a>
                 </div>
 
-
-                <!-- content -->
-            <div class="col-md-10">
-            <div class="row">
-     
-            <div class="mail_list_column">
-                       
-                        <a href="#">
-                          <div class="mail_list">
-                            <div class="left">
-                            </div>
+        <!--main-->
+        <div class="col-md-10">
+            <!-- Tabela -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="inbox">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <!-- Skrzynka nagłówek -->
+                            <tr>
+                                <td>
+                                   <label>Skrzynka odbiorcza</label>  
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default"><i title="Skasuj wybrane" class="glyphicon glyphicon-trash"></i></button>
+                                    <button id="show" class="btn btn-default"><i title="Odpowiedz na wiadomość" class="glyphicon glyphicon glyphicon-share-alt"></i></button>
+                                </td>
+                            </tr>
                             
-                            <div class="right">
-                              <h3>Imię i nazwisko</h3>
-                              <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                            </div>
-                          </div>
-                        </a>
+                            <!-- Wiersz skrzynki -->
+                            
+                            <tr>
+                                <td>
+                                    <label>
+                                        <input type="checkbox">
+                                    </label> <span class="name">Imię i nazwisko odbiorcy</span>
+                                </td>
+                                <td><span class="subject">Temat</span></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
             </div>
-            <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
-</div>
-</div>
+            
+            <div class="row-md-12">
+                <div class="well text-right">
+                </div>
+                
+                
+                <!-- /.modal compose message -->
+            <div class="modal-show" id="modalCompose">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button id="xxx" type="button" class="close compose-close">×</button>
+                <h4 class="modal-title">Nowa wiadomość</h4>
+            </div>
+          
+            <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2" for="inputTo">Odbiorca:</label>
+                  <div class="col-sm-10"><input type="email" class="form-control" id="inputTo"></div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="inputSubject">Temat:</label>
+                  <div class="col-sm-10"><input type="text" class="form-control" id="inputSubject"></div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-12" for="inputBody">Wiadomość</label>
+                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="18"></textarea></div>
+                </div>
+            </form>
+            </div>
+            
+          <div class="modal-footer">
+            <button id="anuluj" type="button" class="btn btn-default pull-left">Anuluj</button> 
+            <button id="wyslij" type="button" class="btn btn-primary ">Wyślij<i class="fa fa-arrow-circle-right fa-lg"></i></button>
+            
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal compose message -->
+    
 
+            </div>
+        </div>
+    </div>
+</div>
         
 <!-- compose -->
     <script>
-      $('#compose, .compose-close').click(function(){
-        $('.compose').slideToggle();
-      });
+   var main = function() {
+     $(".modal-show").hide();
+    
+     $("#show").click(function() {
+     $(".modal-show").show();});
+    
+    $("#anuluj").click(function(){
+      $(".modal-show").hide();  });
+      
+    $("#xxx").click(function(){
+      $(".modal-show").hide(); }); 
+      
+    $("#wyslij").click(function(){
+       $(".modal-show").hide();  });
+    
+  }
+  
+  $(document).ready(main);
     </script>
     <!-- /compose -->
     </body>
