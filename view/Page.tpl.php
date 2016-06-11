@@ -78,6 +78,11 @@ error_reporting(~E_NOTICE);
 						<a href="index.php?do=panel">Panel pracownika</a>
 					</li>
 				<?php } ?>
+				<?php if($_SESSION['kierownik'])  { ?>
+					<li>
+						<a href="index.php?action=panel_kierownika">Panel kierownika</a>
+					</li>
+				<?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

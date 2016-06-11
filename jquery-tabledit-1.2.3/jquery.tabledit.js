@@ -26,6 +26,7 @@ if (typeof jQuery === 'undefined') {
 
         var defaults = {
             url: window.location.href,
+			typ: 'none',
             inputClass: 'form-control input-sm',
             toolbarClass: 'btn-toolbar',
             groupClass: 'btn-group btn-group-sm',
@@ -369,7 +370,7 @@ if (typeof jQuery === 'undefined') {
          */
         function ajax(action)
         {
-            var serialize = $table.find('.tabledit-input').serialize() + '&action=' + action;
+            var serialize = $table.find('.tabledit-input').serialize() + '&action=' + action + '&typ=' + settings.typ;
 
             var result = settings.onAjax(action, serialize);
 
@@ -386,7 +387,7 @@ if (typeof jQuery === 'undefined') {
                     }, 1400);
                 }
 
-                settings.onSuccess(data, textStatus, jqXHR);
+                settings.onSuccess(action, data, textStatus, jqXHR);
             }, 'json');
 
             jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
