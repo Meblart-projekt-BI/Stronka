@@ -98,22 +98,11 @@ $stm2 = $db->query("select * from produkt");
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <h1>Panel kierownika</h1>
+                        <h1>Produkty</h1>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="image-upload">
-                    <form action="upload.php" method="post" enctype="multipart/form-data" target="hiddenFrame">
-                        Przeslij obraz
-                        <label for="FileToUpload">
-                            <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
-                        </label>
-                        <input id="FileToUpload" name="FileToUpload" type="file" style="display: none;"/>
-                        <input type="submit" id="uploadFile" style="display: none;"/>
-                    </form>
-                </div>
-                <h5>Obrazy zostają zapisane w katalogu: <span class="label label-default">image/</span></h5>
 
                 <div class="table-responsive" style="overflow:auto;">
                     <table class="table table-striped jambo_table bulk_action">
@@ -138,6 +127,18 @@ $stm2 = $db->query("select * from produkt");
                         </tbody>
                     </table>
                 </div>
+
+                <div class="image-upload">
+                    <form action="upload.php" method="post" enctype="multipart/form-data" target="hiddenFrame">
+                        Przeslij obraz
+                        <label for="FileToUpload">
+                            <img src="http://goo.gl/pB9rpQ" style="width: 80px; cursor: pointer;"/>
+                        </label>
+                        <input id="FileToUpload" name="FileToUpload" type="file" style="display: none;"/>
+                        <input type="submit" id="uploadFile" style="display: none;"/>
+                    </form>
+                </div>
+                <h5>Obrazy zostają zapisane w katalogu: <span class="label label-default">image/</span></h5>
 
                 <div class="table-responsive" style="height:400px; overflow:auto;">
                     <table id="produkty_k" class="table table-striped table-bordered">
