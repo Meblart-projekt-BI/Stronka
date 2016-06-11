@@ -145,71 +145,71 @@ $stm2 = $db->query("select * from pracownik");
                 </button>
             </p>
             <h5>Hasło nowo powstałego pracownika to: <span class="label label-default">maslowniczka25</span></h5>
-<!--
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <div class="thumbnail">
-                        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        <div class="caption">
-                            <h3>John Smith<br/>
-                                <small>Job Title</small>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
-                                maxime.</p>
-                            <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="thumbnail">
-                        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        <div class="caption">
-                            <h3>John Smith<br/>
-                                <small>Job Title</small>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
-                                maxime.</p>
-                            <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="thumbnail">
-                        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        <div class="caption">
-                            <h3>John Smith<br/>
-                                <small>Job Title</small>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
-                                maxime.</p>
-                            <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <!--
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="thumbnail">
+                                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                                    <div class="caption">
+                                        <h3>John Smith<br/>
+                                            <small>Job Title</small>
+                                        </h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
+                                            maxime.</p>
+                                        <ul class="list-inline">
+                                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="thumbnail">
+                                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                                    <div class="caption">
+                                        <h3>John Smith<br/>
+                                            <small>Job Title</small>
+                                        </h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
+                                            maxime.</p>
+                                        <ul class="list-inline">
+                                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="thumbnail">
+                                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                                    <div class="caption">
+                                        <h3>John Smith<br/>
+                                            <small>Job Title</small>
+                                        </h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
+                                            maxime.</p>
+                                        <ul class="list-inline">
+                                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
-            </div>
--->
+                        </div>
+            -->
         </div>
     </div>
 
@@ -224,63 +224,67 @@ $stm2 = $db->query("select * from pracownik");
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
-    <script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-admin-theme-change-size.js"></script>
+<script type="text/javascript" src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 
-    <script type="text/javascript">
-        $('#pracownicy_k').Tabledit({
-            url: 'table_edit.php',
-            typ: 'pracownicy',
-            restoreButton: false,
-            buttons: {
-                edit: {
-                    class: 'btn btn-sm btn-default',
-                    html: '<span class="glyphicon glyphicon-wrench"></span>',
-                    action: 'edit'
-                },
-                delete: {
-                    class: 'btn btn-sm btn-default',
-                    html: '<span class="glyphicon glyphicon-remove"></span>',
-                    action: 'delete'
-                },
-                confirm: {
-                    class: 'btn btn-sm btn-default',
-                    html: 'Are you sure?'
-                }
+<script type="text/javascript">
+    $('#pracownicy_k').Tabledit({
+        url: 'table_edit.php',
+        typ: 'pracownicy',
+        restoreButton: false,
+        buttons: {
+            edit: {
+                class: 'btn btn-sm btn-default',
+                html: '<span class="glyphicon glyphicon-wrench"></span>',
+                action: 'edit'
             },
-            columns: {
-                identifier: [0, 'id_pracownika'],
-                editable: [[1, 'imie'], [2, 'nazwisko'], [3, 'login'], [4, 'email']]
+            delete: {
+                class: 'btn btn-sm btn-default',
+                html: '<span class="glyphicon glyphicon-remove"></span>',
+                action: 'delete'
             },
-            onSuccess: function (action, data, textStatus, jqXHR) {
-                if (action === "delete") {
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 500);
-                }
+            confirm: {
+                class: 'btn btn-sm btn-default',
+                html: 'Are you sure?'
             }
-        });
-    </script>
+        },
+        columns: {
+            identifier: [0, 'id_pracownika'],
+            editable: [[1, 'imie'], [2, 'nazwisko'], [3, 'login'], [4, 'email']]
+        },
+        onSuccess: function (action, data, textStatus, jqXHR) {
+            if (action === "delete") {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 500);
+            }
+        }
+    });
+</script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+<script type="text/javascript">
+    $(document).ready(function () {
 
-            $('#dodaj').click(function () {
-                var id_pracownika = $("#id_pracownika").val();
-                var dataString = 'id_pracownika=' + id_pracownika;
-                {
-                    $.ajax({
-                        type: "POST",
-                        url: "register_pracownik_k.php",
-                        data: dataString,
-                        cache: false,
-                    });
-                }
-                return false;
-            });
+        $('#dodaj').click(function () {
+            var id_pracownika = $("#id_pracownika").val();
+            var dataString = 'id_pracownika=' + id_pracownika;
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "register_pracownik_k.php",
+                    data: dataString,
+                    cache: false,
+                    success: function(data){
+                        window.location.reload();
+                    }
+                });
+            }
+            return false;
         });
-    </script>
+    });
+</script>

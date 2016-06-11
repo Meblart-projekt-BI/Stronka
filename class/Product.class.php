@@ -101,14 +101,19 @@ class Product {
 
         return $this->result;
     }
-    
+
     public function getCategories()
     {
         $query = $this->db->query('select * from kategoria');
         $this->result = $query;
-        
+
         return $this->result;
     }
-    
-    
+
+    public function dodajProdukt()
+    {
+        $query = $this->db->query("INSERT INTO produkt(id_kategorii, nazwa_produktu, cena_jednostkowa, opis_produktu, image) VALUES(1, 'nowy_produkt', 0, 'przykladowy_opis', 'image/')");
+    }
+
+
 }

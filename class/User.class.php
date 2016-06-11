@@ -35,6 +35,9 @@ class User  extends DBObject{
                 'nazwisko' => $this->nazwisko,
                 'login' => $this->login,
                 'haslo' => $this->haslo,
+                'id_zamowienia' => 0,
+                'id_pracownika' => 0,
+                'pesel' => 0,
                 'email' => $this->email
             );
         }
@@ -77,7 +80,7 @@ class User  extends DBObject{
         }
 		else //pracownik
 		{
-			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
+			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
 			$stm = $stm2->rowCount();
             $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			$this->result = $stm;

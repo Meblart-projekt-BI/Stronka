@@ -45,7 +45,7 @@ error_log(print_r($input, true), 0);
 if($input['typ'] === 'produkty')
 {
     if ($input['action'] === 'edit') {
-        $sql = "UPDATE produkt set nazwa_produktu='" . $input['nazwa_produktu'] . "', opis_produktu='" . $input['opis_produktu'] . "', image='" . $input['image'] . "' WHERE id_produktu='" . $input['id_produktu'] . "'";
+        $sql = "UPDATE produkt set nazwa_produktu='" . $input['nazwa_produktu'] . "', opis_produktu='" . $input['opis_produktu'] . "', id_kategorii='" . $input['id_kategorii'] . "', image='" . $input['image'] . "' WHERE id_produktu='" . $input['id_produktu'] . "'";
     } else if ($input['action'] === 'delete') {
         $sql = "DELETE from produkt WHERE id_produktu='" . $input['id_produktu'] . "'";
     }

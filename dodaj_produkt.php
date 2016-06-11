@@ -14,13 +14,5 @@ include_once "config.php";
 
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 
-
-$user = new User($db);
-
-$user->imie=htmlspecialchars($_POST['imie']);
-$user->nazwisko=htmlspecialchars($_POST['nazwisko']);
-$user->haslo=md5(htmlspecialchars($_POST['haslo']));
-$user->email=htmlspecialchars($_POST['email']);
-$user->login=htmlspecialchars($_POST['login']);
-
-$user->create(NULL, NULL);
+$produkt = new Product($db);
+$produkt->dodajProdukt();

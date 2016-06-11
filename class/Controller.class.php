@@ -67,6 +67,11 @@ class Controller
 					$this->page->addView($view);
 					break;
 				default:
+					if($_SESSION['kierownik'])
+					{
+						$this->panel_kierownika();
+						return;
+					}
 					$view = new View('Panel_pracownika', $this->result);
 					$this->page->addView($view);
 					break;
@@ -425,7 +430,9 @@ class Controller
 		$this->result[0][3] = $this->db->count("select * from pracownik"); //pracownicy
 		$this->result[0][4] = $this->db->count("select * from produkt");; //produkty
 		$this->result[0][5] = 0; //wiadomosci
-		$this->result[0][6] = 0; //dostawcy
+
+		$product = new Product($this->db);
+		$this->result[1] = $product->getCategories();
 
 		//error_log(print_r($this->result, true), 0);
 

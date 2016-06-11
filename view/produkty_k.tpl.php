@@ -113,7 +113,31 @@ $stm2 = $db->query("select * from produkt");
                         <input type="submit" id="uploadFile" style="display: none;"/>
                     </form>
                 </div>
-                <h5>Pliki zostaja zapisane w katalogu: <span class="label label-default">image/</span></h5>
+                <h5>Obrazy zostają zapisane w katalogu: <span class="label label-default">image/</span></h5>
+
+                <div class="table-responsive" style="overflow:auto;">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th class="column-title text-center">ID kategorii</th>
+                            <th class="column-title text-center">Nazwa kategorii</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($this->result[1] as $row) {
+                            error_log(print_r($this->result[1], true), 0);
+                            ?>
+                            <tr class="table-row">
+                                <td class=" "><?php echo $row[0]; ?></td>
+                                <td class=" "><?php echo $row[1]; ?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="table-responsive" style="height:400px; overflow:auto;">
                     <table id="produkty_k" class="table table-striped table-bordered">
@@ -122,6 +146,7 @@ $stm2 = $db->query("select * from produkt");
                             <th class="column-title text-center">ID produktu</th>
                             <th class="column-title text-center">Nazwa produktu</th>
                             <th class="column-title text-center">Cena jednostkowa</th>
+                            <th class="column-title text-center">ID kategorii</th>
                             <th class="column-title text-center">Opis produktu</th>
                             <th class="column-title text-center">Obraz</th>
                             <th class="column-title text-center">Podglad obrazu</th>
@@ -136,6 +161,7 @@ $stm2 = $db->query("select * from produkt");
                                 <td class=" "><?php echo $row["id_produktu"]; ?></td>
                                 <td class=" "><?php echo $row["nazwa_produktu"]; ?></td>
                                 <td class=" "><?php echo $row["cena_jednostkowa"]; ?></td>
+                                <td class=" "><?php echo $row["id_kategorii"]; ?></td>
                                 <td class=" "><?php echo $row["opis_produktu"]; ?>
                                 <td class=" " name="imagePodglad" id="imagePodglad"><?php echo $row["image"]; ?>
                                 </td>
@@ -150,10 +176,12 @@ $stm2 = $db->query("select * from produkt");
                     </table>
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" id="dodaj">
+                Dodaj nowy produkt
+            </button>
         </div>
 
     </div>
-</div>
 </div>
 
 <!-- footer -->
@@ -204,7 +232,7 @@ $stm2 = $db->query("select * from produkt");
         },
         columns: {
             identifier: [0, 'id_produktu'],
-            editable: [[1, 'nazwa_produktu'], [2, 'cena_jednostkowa'], [3, 'opis_produktu'], [4, 'image']]
+            editable: [[1, 'nazwa_produktu'], [2, 'cena_jednostkowa'], [3, 'id_kategorii'], [4, 'opis_produktu'], [5, 'image']]
         },
         onSuccess: function (action, data, textStatus, jqXHR) {
             if (action === "delete") {
@@ -213,5 +241,22 @@ $stm2 = $db->query("select * from produkt");
                 }, 500);
             }
         }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#dodaj').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "dodaj_produkt.php",
+                cache: false,
+                success: function (data) {
+                    window.location.reload();
+                }
+            });
+            return false;
+        });
     });
 </script>
