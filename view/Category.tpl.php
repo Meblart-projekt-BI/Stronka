@@ -11,6 +11,30 @@
             </div>
         </div>
         <!-- /.row -->
+        
+         <!-- Sortowanie -->
+         <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2"> 
+            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+            Sortuj według: <span class="caret"></span>
+            </button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Sortuj A-Z</a></li>
+                <li><a href="#">Sortuj Z-A</a></li>
+                <li><a href="#">Sortuj cena-malejąco</a></li>
+                <li><a href="#">Sortuj cena-rosnąco</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--koniec sortowania -->
+
+        <div class="row">
+            <div class="col-lg-12">
+             <hr>
+            </div>
+        </div>
 
         <!-- Content Row -->
         <div class="row">
