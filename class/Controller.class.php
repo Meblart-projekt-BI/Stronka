@@ -65,6 +65,8 @@ class Controller
 					$this->page->addView($view);
 					break;
                 case 'wiadomosci':
+                    $wiadomosc = new Wiadomosc($this->db);
+                    $this->result[8] = $wiadomosc->getMsgTitles();
                     $view = new View('Wiadomosci',$this->result);
 					$this->page->addView($view);
 					break;
