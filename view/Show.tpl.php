@@ -28,27 +28,27 @@
             <div class="col-md-9">
             <div class="row">    
                 
-                <h2><?=$this->result[0]['nazwa_produktu'];?></h2>
+                <h2><?=$this->result[0][0]['nazwa_produktu'];?></h2>
 
             <hr>
                 <div class="col-md-7" style="alignment-adjust: left;">
-                <img class="img-responsive" src="<?=$this->result[0]['image'];?>"/>
+                <img class="img-responsive" src="<?=$this->result[0][0]['image'];?>"/>
                 </div>
 
                 <div class="col-md-5">
                 <div class="product_price">
-                <h1 class="price"><?=$this->result[0]['cena_jednostkowa'];?> zł</h1>
+                <h1 class="price"><?=$this->result[0][0]['cena_jednostkowa'];?> zł</h1>
                 </div>
                         
              <div class="">
-                 <a href="index.php?action=addToCart&id=<?=$this->result[0]['id_produktu'];?>">
+                 <a href="index.php?action=addToCart&id=<?=$this->result[0][0]['id_produktu'];?>">
                      <button type="button" class="btn btn-default btn-lg">Do koszyka!</button>
                  </a>
              </div>
          
             <hr>
             <p> 
-            <?=$this->result[0]['opis_produktu'];?>
+            <?=$this->result[0][0]['opis_produktu'];?>
             </p>
           
             <hr>
@@ -62,30 +62,35 @@
           </div>
           
            <div class="row">
+		   
+<?php if($this->result['klient']) { ?>
                 <div class="well">
                     <h4>Komentarz</h4>
-                    <form role="form">
+                    <form role="form" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="desc"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Udostępnij</button>
+                        <button type="submit" name="post" class="btn btn-primary">Udostępnij</button>
                     </form>
                 </div>
-        
+<?php } ?>
+
+<?php foreach ($this->result['opinie'] as $row) { ?>
                         <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Niezatapialna Amanda
-                            <small>August 25, 2014 at 9:30 PM</small>
+                        <h4 class="media-heading"><?=$row['imie']." ".$row['nazwisko'];?>
+                            <small><?=$row['data_wystawienia'];?></small>
                         </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <?=$row['tresc'];?>
                     </div>
                 </div>
+<?php } ?>
 
-                <!-- Comment -->
+                <!-- 
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -95,7 +100,7 @@
                             <small>August 25, 2014 at 9:30 PM</small>
                         </h4>
                         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment -->
+                        <!-- Nested Comment 
                         <div class="media">
                             <a class="pull-left" href="#">
                                 <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -108,7 +113,7 @@
                             </div>
                         </div>
                        
-                    </div>
+                    </div>  -->
                 </div>
             </div>
             </div>

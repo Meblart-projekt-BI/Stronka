@@ -35,13 +35,13 @@ class Controller
 
 		if ($_GET['do'] == 'page') // powrot na str. glowna
 			$_SESSION['main'] = true;
-		if ($_SESSION['pracownik'] == 'yes' && $_GET['do'] == 'panel')  // powrot do panelu
+		if ($_SESSION['pracownik'] && $_GET['do'] == 'panel')  // powrot do panelu
 			$_SESSION['main'] = false;
 
 		$product = new Product($this->db);
 		$this->result[1] = $product->getProducts();
 
-		if ($_SESSION['pracownik'] != 'yes' || $_SESSION['main'])  // str. glowna
+		if (!$_SESSION['pracownik'] || $_SESSION['main'])  // str. glowna
 		{
 			$view = new View('Main', $this->result);
 			$this->page->addView($view);
@@ -55,8 +55,8 @@ class Controller
 					$this->page->addView($view);
 					break;
 				case 'faktura':
-                    //$this->result[4]= $product->getDaneKlienta();
-                    //$this->result[5]= $product->getAdresKlienta();
+                    //$this->result[4] = $product->getDaneKlienta();
+                   // $this->result[5]= $product->getAdresKlienta();
                     //$this->result[6]= $product->getZamowienieKlienta();
                     //$this->result[7]= $product->getZamowienieProduktyKlienta();
 					$view = new View('Faktura',$this->result);
@@ -325,11 +325,25 @@ class Controller
 		$id = htmlspecialchars($_GET['id']);
 
 		$product = new Product($this->db);
-		$this->result = $product->getProductById($id);
+		
+		if(isset($_POST['post']))
+		{
+			if(empty($_POST['desc']))
+				echo("<center><h1>Najierw wprowadź komentarz!</h1></center>");
+			else
+			{
+				$this->db->query("INSERT INTO `opinia` (`id_opinii`, `id_klienta`, `tresc`, `data_wystawienia`, `id_produktu`) VALUES (NULL, '".$_SESSION['id_klienta']."', '".addslashes($_POST['desc'])."', '".date('Y-m-d H:i:s', time())."', '".addslashes($_GET['id'])."')");
+				echo("<center><h1>Komentarz! został dodany.</h1></center>");
+			}
+		}
 
+		$this->result[0] = $product->getProductById($id);
+		$this->result['opinie'] = $product->getProductOpinions($id);
+		$this->result['klient'] = $product-> isKlient();
+		
 		$view = new View('Show', $this->result);
 		$this->page->addView($view);
-
+		
 	}
 
 	public function showComment()

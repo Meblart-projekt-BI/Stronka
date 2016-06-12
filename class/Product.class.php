@@ -31,9 +31,27 @@ class Product {
         return $this->result->fetchAll();
     }
     
-    public function getProductByCategory($id)
+	public function getProductByCategory($id)
     {
-        $query = $this->db->query('select * from produkt where id_kategorii = "'.$id.'"');
+		$w = '';
+
+		switch($_GET['sort_by'])
+		{
+			case 'az':
+				$w .= 'ORDER BY  nazwa_produktu ASC';
+				break;
+			case 'za': 
+				$w .= 'ORDER BY  nazwa_produktu DESC';
+				break;
+			case 'cena_asc': 
+				$w .= 'ORDER BY  cena_jednostkowa DESC';
+				break;	
+			case 'cena_desc': 
+				$w .= 'ORDER BY  cena_jednostkowa ASC';
+				break;	
+		}
+		
+        $query = $this->db->query('select * from produkt where id_kategorii = "'.$id.'" '.$w.' ');
         $this->result = $query;
         
         return $this->result;
@@ -114,6 +132,21 @@ class Product {
     {
         $query = $this->db->query("INSERT INTO produkt(id_kategorii, nazwa_produktu, cena_jednostkowa, opis_produktu, image) VALUES(1, 'nowy_produkt', 0, 'przykladowy_opis', 'image/')");
     }
+	
+    public function isKlient()
+    {
+        $query = $this->db->query("select * from zamowienie z, zamowienie_szczegoly s WHERE z.id_zamowienia = s.id_zamowienia AND s.id_produktu = '".$_GET['id']."' and z.id_klienta = '".$_SESSION['id_klienta']."' and z.status_zamowienia = 'paid'");
+		$this->result = $query;
+		$stm =  $this->result->fetchAll();
+        return (boolean) $stm;
+    }
 
+	 public function getProductOpinions($id)
+    {
+        $query = $this->db->query('select * from opinia o, klient k where o.id_klienta = k.id_klienta and id_produktu = "'.$id.'"');
+        $this->result = $query;
+        
+        return $this->result->fetchAll();
+    }
 
 }

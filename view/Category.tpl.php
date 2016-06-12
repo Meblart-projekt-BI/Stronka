@@ -21,10 +21,10 @@
             Sortuj według: <span class="caret"></span>
             </button>
                 <ul class="dropdown-menu">
-                <li><a href="#">Sortuj A-Z</a></li>
-                <li><a href="#">Sortuj Z-A</a></li>
-                <li><a href="#">Sortuj cena-malejąco</a></li>
-                <li><a href="#">Sortuj cena-rosnąco</a></li>
+                <li><a href="index.php?action=category&val=<?=$_GET['val'];?>&sort_by=az">Sortuj A-Z</a></li>
+                <li><a href="index.php?action=category&val=<?=$_GET['val'];?>&sort_by=za">Sortuj Z-A</a></li>
+                <li><a href="index.php?action=category&val=<?=$_GET['val'];?>&sort_by=cena_asc">Sortuj cena-malejąco</a></li>
+                <li><a href="index.php?action=category&val=<?=$_GET['val'];?>&sort_by=cena_desc">Sortuj cena-rosnąco</a></li>
                 </ul>
             </div>
         </div>

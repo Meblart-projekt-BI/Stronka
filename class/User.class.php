@@ -74,23 +74,22 @@ class User  extends DBObject{
         {
             $klient = $stm3->fetch();
             $_SESSION['user']=$result2['login'];
-            $_SESSION['id_klienta']=$klient['id_klienta'];
+            $_SESSION['id_klienta']=$result2['id_klienta'];
             $_SESSION['login']='yes';
 			echo(1);
         }
 		else //pracownik
 		{
-			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
-			$stm = $stm2->rowCount();
-            $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
+			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
+			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
 			$this->result = $stm;
+			$result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			if($stm == 1) 
 			{
 				$_SESSION['user']=$result2['login'];
 				$_SESSION['login']='yes';
 				$_SESSION['pracownik'] = true;
 				$_SESSION['main'] = false;
-
                 if($result2)
                 {
                     $this->id_pracownika = $result2["id_pracownika"];
