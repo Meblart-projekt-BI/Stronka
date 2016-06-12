@@ -434,8 +434,8 @@ class Controller
 		$this->result[0][1] = 0; //faktury
 		$this->result[0][2] = $this->db->count("select * from klient"); //klienci
 		$this->result[0][3] = $this->db->count("select * from pracownik"); //pracownicy
-		$this->result[0][4] = $this->db->count("select * from produkt");; //produkty
-		$this->result[0][5] = 0; //wiadomosci
+		$this->result[0][4] = $this->db->count("select * from produkt"); //produkty
+		$this->result[0][5] = $this->db->count("select * from wiadomosc"); //wiadomosci
 
 		$product = new Product($this->db);
 		$this->result[1] = $product->getCategories();

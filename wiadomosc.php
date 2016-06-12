@@ -17,17 +17,40 @@ include_once "config.php";
 
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 
+$wiadomosc = new Wiadomosc($db);
 if(isset($_POST['id_wiadomosci'])) {
-    $wiadomosc = new Wiadomosc($db);
 
     echo($wiadomosc->getMsgTresc($_POST['id_wiadomosci']));
+}
+elseif(isset($_POST['dodaj']) && $_POST['dodaj'] == 1)
+{
+    if(!isset($_SESSION['id_klienta'])) {
+        if(isset($_SESSION['pracownik']) && $_SESSION['pracownik'])
+        {
+            echo("Pracownicy nie mogą wysyłać wiadomości jako klienci!");
+        }
+        else {
+            echo("Musisz byc zalogowany!");
+        }
+    }
+    else
+    {
+        $liczbaWiadomosci = $wiadomosc->zliczWiadomosci($_SESSION['id_klienta']);
+        if( $liczbaWiadomosci < 5) {
+            $wiadomosc->dodajWiadomosc($_POST['tytul'], $_POST['tresc'], $_SESSION['id_klienta']);
+            echo(1);
+        }
+        else
+        {
+            echo("Osiągnąłeś limit nieobsłużonych wiadomości[5]");
+        }
+    }
 }
 elseif(isset($_POST['id_wiadomosci1'])) {
     error_log(print_r($_POST, true), 0);
     for ($i = 1; $i <= 10; $i++) {
         if(isset($_POST['id_wiadomosci'.$i]))
         {
-            $wiadomosc = new Wiadomosc($db);
             $wiadomosc->usunWiadomosc($_POST['id_wiadomosci'.$i]);
         }
     }

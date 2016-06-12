@@ -84,9 +84,10 @@ error_reporting(~E_NOTICE);
             <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
 
             <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-
+<!--
             <a href="#" class="btn  btn-block btn-danger" role="button"><i class="glyphicon glyphicon-edit"></i> Napisz
                 wiadomość</a>
+                -->
         </div>
 
         <!--main-->
@@ -136,6 +137,9 @@ error_reporting(~E_NOTICE);
                         </table>
                     </div>
                 </div>
+            </div>
+            <div id="error2">
+                <!-- error will be showen here ! -->
             </div>
 
             <div class="row-md-12">
@@ -222,6 +226,7 @@ error_reporting(~E_NOTICE);
 
         $("#show").click(function () {
             if($(".wiadomoscCheckbox:checked").length == 1) {
+                $("#error2").html("");
                 var dataString;
                 $('#checkboxes input:checked').each(function() {
                     dataString = 'id_wiadomosci='+$(this).attr('id');
@@ -242,10 +247,13 @@ error_reporting(~E_NOTICE);
                         $('#inputBody').val(tresc);
 
 
-                        console.log(data);
+                        //console.log(data);
                         $(".modal-show").show();
                     }
                 });
+            }
+            else {
+                $("#error2").html("<span style='color:#cc0000'>Możesz odpowiedzieć maksymalnie na jedną wiadomość na raz.</span>");
             }
         });
 
@@ -278,10 +286,10 @@ error_reporting(~E_NOTICE);
                         }
                         else
                         {
-                            console.log(data);
+                            //console.log(data);
                             $("#error").html("<span style='color:#cc0000'>Błąd:</span> "+data);
                         }
-                        $("#wyslij").html("Wyślij...&nbsp;<i class='fa fa-arrow-circle-right fa-lg'></i>");
+                        $("#wyslij").html("Wyślij&nbsp;<i class='fa fa-arrow-circle-right fa-lg'></i>");
                     }
                 });
             }

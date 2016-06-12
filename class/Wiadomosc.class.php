@@ -37,7 +37,7 @@ class Wiadomosc  extends DBObject{
         $your_array = explode("\n", $result['tresc_wiadomosci']);
         if (is_array($your_array)) {
             foreach($your_array as $line) {
-                $new .= "--->>>" . $line;
+                $new .= "--->>>" . $line . "\r\n";
             }
         }
 
@@ -52,5 +52,15 @@ class Wiadomosc  extends DBObject{
     public function usunWiadomosc($id)
     {
         $stm = $this->db->query("delete from wiadomosc where id_wiadomosci='" . $id . "'");
+    }
+
+    public function dodajWiadomosc($tytul, $tresc, $id_klienta)
+    {
+        $this->db->query("insert into wiadomosc(tresc_wiadomosci, id_klienta, tytul_wiadomosci) values('" . $tresc . "', '" . $id_klienta . "', '" . $tytul . "')");
+    }
+
+    public function zliczWiadomosci($id_klienta)
+    {
+        return $this->db->count("select * from klient where id_klienta='" . $id_klienta . "'");
     }
 }

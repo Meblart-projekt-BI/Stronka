@@ -19,6 +19,8 @@
                 <div class="list-group">
                     <a href="index.php?action=userpanel" class="list-group-item">Moje dane</a>
                     <a href="index.php?action=historia" class="list-group-item">Historia zamówień</a>
+                    <a href="index.php?action=kontakt" class="btn  btn-block btn-danger" role="button"><i class="glyphicon glyphicon-edit"></i> Napisz
+                        wiadomość</a>
                 </div>
             </div>
 
