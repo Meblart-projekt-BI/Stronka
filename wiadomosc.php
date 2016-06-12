@@ -64,19 +64,27 @@ else
     $mail = new PHPMailer;
     //$mail->SMTPDebug = 3;
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'poczta.o2.pl';  // Specify main and backup SMTP servers
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'meblart@o2.pl';                 // SMTP username
-    $mail->Password = 'qwert6';                           // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Username = 'meblartgarden@gmail.com';                 // SMTP username
+    $mail->Password = 'qwert678';                           // SMTP password
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
-    $mail->setFrom('meblart@o2.pl', 'Meblart');
+    $mail->setFrom('meblartgarden@gmail.com', 'Meblart');
     $mail->addAddress($email);
 
     $text = str_replace("\n.", "\n..", $text);
     $mail->Subject = $temat;
     $mail->Body    = $text;
+
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
 
     if($mail->send())
         echo(1);

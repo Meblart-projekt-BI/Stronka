@@ -2,15 +2,10 @@
 session_start();
 error_reporting(~E_NOTICE);
 
-include('config.php');
-$db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
-
 if (!$_SESSION['kierownik']) {
     session_destroy();
     header("Location: index.php");
 }
-
-$stm2 = $db->query("select * from pracownik");
 
 ?>
 
@@ -121,7 +116,7 @@ $stm2 = $db->query("select * from pracownik");
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($stm2 as $row) {
+                            foreach ($this->result[1] as $row) {
                                 ?>
                                 <tr class="even pointer">
                                     <td class=" "><?php echo $row["id_pracownika"]; ?></td>
