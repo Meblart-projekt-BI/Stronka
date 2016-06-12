@@ -67,13 +67,13 @@ class User  extends DBObject{
         $stm3 = $this->db->query("select * from ".static::$table." where email = '$this->email' and haslo = '$pass'");
         $stm = $stm3->rowCount();
 
-        $result2 = $stm3->fetch(PDO::FETCH_ASSOC);
         $this->result = $stm;
   
         if($stm == 1) // klient
         {
-            $klient = $stm3->fetch();
-            $_SESSION['user']=$result2['login'];
+            $klient = $stm3->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['user']=$klient['login'];
             $_SESSION['id_klienta']=$klient['id_klienta'];
             $_SESSION['login']='yes';
 			echo(1);
@@ -82,22 +82,19 @@ class User  extends DBObject{
 		{
 			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
 			$stm = $stm2->rowCount();
-            $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
+            $pracownik = $stm2->fetch(PDO::FETCH_ASSOC);
 			$this->result = $stm;
 			if($stm == 1) 
 			{
-				$_SESSION['user']=$result2['login'];
+				$_SESSION['user']=$pracownik['login'];
 				$_SESSION['login']='yes';
 				$_SESSION['pracownik'] = true;
 				$_SESSION['main'] = false;
 
-                if($result2)
-                {
-                    $this->id_pracownika = $result2["id_pracownika"];
-                    if($this->id_pracownika >= 1000 && $this->id_pracownika < 2000)
-                        $_SESSION['kierownik'] = TRUE;
-                }
-
+                $this->id_pracownika = $pracownik["id_pracownika"];
+                if($this->id_pracownika >= 1000 && $this->id_pracownika < 2000)
+                    $_SESSION['kierownik'] = TRUE;
+                
 				echo(1);
 			}
 		}
