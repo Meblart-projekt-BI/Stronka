@@ -32,23 +32,23 @@
 
             <hr>
                 <div class="col-md-7" style="alignment-adjust: left;">
-                <img class="img-responsive" src="<?=$this->result[0][0]['image'];?>"/>
-                </div>
+                 <img class="img-responsive" src="<?=$this->result[0][0]['image'];?>"/>
+                  </div>
 
                 <div class="col-md-5">
                 <div class="product_price">
                 <h1 class="price"><?=$this->result[0][0]['cena_jednostkowa'];?> zł</h1>
-                </div>
+                  </div>
                         
              <div class="">
-                 <a href="index.php?action=addToCart&id=<?=$this->result[0][0]['id_produktu'];?>">
-                     <button type="button" class="btn btn-default btn-lg">Do koszyka!</button>
-                 </a>
+                  <a href="index.php?action=addToCart&id=<?=$this->result[0][0]['id_produktu'];?>">
+                       <button type="button" class="btn btn-default btn-lg">Do koszyka!</button>
+                   </a>
              </div>
          
             <hr>
             <p> 
-            <?=$this->result[0][0]['opis_produktu'];?>
+           <?=$this->result[0][0]['opis_produktu'];?>
             </p>
           
             <hr>
@@ -62,60 +62,37 @@
           </div>
           
            <div class="row">
-		   
-<?php if($this->result['klient']) { ?>
+           <?php if($this->result['klient']) { ?>
                 <div class="well">
                     <h4>Komentarz</h4>
                     <form role="form" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="desc"></textarea>
+                             <textarea class="form-control" rows="3" name="desc"></textarea>
                         </div>
                         <button type="submit" name="post" class="btn btn-primary">Udostępnij</button>
                     </form>
                 </div>
-<?php } ?>
-
-<?php foreach ($this->result['opinie'] as $row) { ?>
+        <?php } ?>
+        
+        <?php foreach ($this->result['opinie'] as $row) { ?>
+        
                         <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading"><?=$row['imie']." ".$row['nazwisko'];?>
-                            <small><?=$row['data_wystawienia'];?></small>
-                        </h4>
-                        <?=$row['tresc'];?>
+                       <h4 class="media-heading"><?=$row['imie']." ".$row['nazwisko'];?>
+                             <small><?=$row['data_wystawienia'];?></small>
+                          </h4>
+                         <?=$row['tresc'];?>
+                        </div>
+                </div>
+                
+                <?php } ?>
+
                     </div>
                 </div>
-<?php } ?>
+            </div>
 
-                <!-- 
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Teofil Głodomor
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment 
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Melania Głodomor
-                                    <small>August 25, 2014 at 9:30 PM</small>
-                                </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                       
-                    </div>  -->
-                </div>
-            </div>
-            </div>
-        </div>
                 <hr>
