@@ -41,12 +41,18 @@ class Controller
 		$product = new Product($this->db);
 		$this->result[1] = $product->getProducts();
 
+<<<<<<< HEAD
 		if (!$_SESSION['pracownik'] || $_SESSION['main'])  // str. glowna
+=======
+
+		if ($_SESSION['pracownik'] != 'yes' || $_SESSION['main'])  // str. glowna
+>>>>>>> origin/Testy
 		{
 			$view = new View('Main', $this->result);
 			$this->page->addView($view);
 		} else // panel klienta
 		{
+
 			switch ($_GET['do']) {
 				case 'zamowienia':
                     $this->result[2]= $product->getZamowienie();
@@ -67,13 +73,15 @@ class Controller
 					$this->page->addView($view);
 					break;
 				default:
-					if($_SESSION['kierownik'])
-					{
-						$this->panel_kierownika();
-						return;
-					}
-					$view = new View('Panel_pracownika', $this->result);
-					$this->page->addView($view);
+                    if($_GET['do'] === 'panel' || !isset($_SESSION['kierownik']) || !$_SESSION['kierownik']) {
+                        $view = new View('Panel_pracownika', $this->result);
+                        $this->page->addView($view);
+                    }
+                    else
+                    {
+                        unset($_GET['do']);
+                        $this->panel_kierownika();
+                    }
 					break;
 			}
 		}
@@ -258,7 +266,7 @@ class Controller
 				$koszyk_widok[$id_produktu]['ilosc'] = $ilosc;
 				$kwota_zamowienia += $ilosc * $produkt[0]['cena_jednostkowa'];
 			}
-			
+
 			$calkowita_kwota = $kwota_zamowienia + $courier_result[0]['cena_dostawy'];
 			$_SESSION['zamowienie']['calkowita_kwota'] = $calkowita_kwota;
 
@@ -289,12 +297,12 @@ class Controller
 			$_SESSION['zamowienie']['phone'],
 			$_SESSION['zamowienie']['uwagi']
 		);
-		
+
 		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
 		$zamowienie_id = $order->getLastOrderNumber();
 		$zamowienie_szczegoly_id = $orderDetails->getNewOrderDetailsNumber();
 
-		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych		
+		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
 			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
 		}

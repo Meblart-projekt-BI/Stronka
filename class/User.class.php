@@ -67,29 +67,42 @@ class User  extends DBObject{
         $stm3 = $this->db->query("select * from ".static::$table." where email = '$this->email' and haslo = '$pass'");
         $stm = $stm3->rowCount();
 
-        $result2 = $stm3->fetch(PDO::FETCH_ASSOC);
         $this->result = $stm;
   
         if($stm == 1) // klient
         {
+<<<<<<< HEAD
             $klient = $stm3->fetch();
             $_SESSION['user']=$result2['login'];
             $_SESSION['id_klienta']=$result2['id_klienta'];
+=======
+            $klient = $stm3->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['user']=$klient['login'];
+            $_SESSION['id_klienta']=$klient['id_klienta'];
+>>>>>>> origin/Testy
             $_SESSION['login']='yes';
 			echo(1);
         }
 		else //pracownik
 		{
+<<<<<<< HEAD
 			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
 			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
+=======
+			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
+			$stm = $stm2->rowCount();
+            $pracownik = $stm2->fetch(PDO::FETCH_ASSOC);
+>>>>>>> origin/Testy
 			$this->result = $stm;
 			$result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			if($stm == 1) 
 			{
-				$_SESSION['user']=$result2['login'];
+				$_SESSION['user']=$pracownik['login'];
 				$_SESSION['login']='yes';
 				$_SESSION['pracownik'] = true;
 				$_SESSION['main'] = false;
+<<<<<<< HEAD
                 if($result2)
                 {
                     $this->id_pracownika = $result2["id_pracownika"];
@@ -97,6 +110,13 @@ class User  extends DBObject{
                         $_SESSION['kierownik'] = TRUE;
                 }
 
+=======
+
+                $this->id_pracownika = $pracownik["id_pracownika"];
+                if($this->id_pracownika >= 1000 && $this->id_pracownika < 2000)
+                    $_SESSION['kierownik'] = TRUE;
+                
+>>>>>>> origin/Testy
 				echo(1);
 			}
 		}
