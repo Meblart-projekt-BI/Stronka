@@ -2,16 +2,11 @@
 session_start();
 error_reporting(~E_NOTICE);
 
-include('config.php');
-
-$db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
-
 if (!$_SESSION['kierownik']) {
     session_destroy();
     header("Location: index.php");
 }
 
-$stm2 = $db->query("select * from klient");
 ?>
 
 <!-- small navbar -->
@@ -88,7 +83,8 @@ $stm2 = $db->query("select * from klient");
                             class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
                 </li>
                 <li>
-                    <a href="#"><span class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
+                    <a href="index.php?action=panel_kierownika&do=wiadomosci"><span
+                            class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
                 </li>
             </ul>
         </div>
@@ -120,7 +116,7 @@ $stm2 = $db->query("select * from klient");
 
                             <tbody>
                             <?php
-                            foreach ($stm2 as $row) {
+                            foreach ($this->result[1] as $row) {
                                 ?>
                                 <tr class="even pointer">
                                     <td class=" "><?php echo $row["id_klienta"]; ?></td>

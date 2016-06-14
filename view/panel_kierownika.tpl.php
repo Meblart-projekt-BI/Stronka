@@ -72,7 +72,8 @@
                             class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
                 </li>
                 <li>
-                    <a href="#"><span class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
+                    <a href="index.php?action=panel_kierownika&do=wiadomosci"><span
+                            class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
                 </li>
             </ul>
         </div>

@@ -87,7 +87,8 @@ $stm2 = $db->query("select * from produkt");
                             class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
                 </li>
                 <li>
-                    <a href="#"><span class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
+                    <a href="index.php?action=panel_kierownika&do=wiadomosci"><span
+                            class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
                 </li>
             </ul>
         </div>
@@ -115,7 +116,7 @@ $stm2 = $db->query("select * from produkt");
                         <tbody>
                         <?php
                         foreach ($this->result[1] as $row) {
-                            error_log(print_r($this->result[1], true), 0);
+                            //error_log(print_r($this->result[1], true), 0);
                             ?>
                             <tr class="table-row">
                                 <td class=" "><?php echo $row[0]; ?></td>

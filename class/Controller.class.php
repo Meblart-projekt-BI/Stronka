@@ -69,6 +69,8 @@ class Controller
 					$this->page->addView($view);
 					break;
                 case 'wiadomosci':
+                    $wiadomosc = new Wiadomosc($this->db);
+                    $this->result[8] = $wiadomosc->getMsgTitles();
                     $view = new View('Wiadomosci',$this->result);
 					$this->page->addView($view);
 					break;
@@ -450,11 +452,19 @@ class Controller
 		$this->result[0][1] = 0; //faktury
 		$this->result[0][2] = $this->db->count("select * from klient"); //klienci
 		$this->result[0][3] = $this->db->count("select * from pracownik"); //pracownicy
-		$this->result[0][4] = $this->db->count("select * from produkt");; //produkty
-		$this->result[0][5] = 0; //wiadomosci
+		$this->result[0][4] = $this->db->count("select * from produkt"); //produkty
+		$this->result[0][5] = $this->db->count("select * from wiadomosc"); //wiadomosci
 
-		$product = new Product($this->db);
-		$this->result[1] = $product->getCategories();
+		if($id == 'produkty_k') {
+			$product = new Product($this->db);
+			$this->result[1] = $product->getCategories();
+		} elseif($id == 'klienci_k') {
+			$stm2 = $this->db->query("select * from klient");
+			$this->result[1] = $stm2->fetchAll(PDO::FETCH_ASSOC);
+		} elseif($id == 'pracownicy_k') {
+			$stm2 = $this->db->query("select * from pracownik");
+			$this->result[1] = $stm2->fetchAll(PDO::FETCH_ASSOC);
+		}
 
 		//error_log(print_r($this->result, true), 0);
 
