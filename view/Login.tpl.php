@@ -166,7 +166,7 @@
 
                         $("#error2").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Email jest zajęty!</div>');
 
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz ko2nto');
+                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz konto');
 
                    
 
@@ -181,7 +181,7 @@
                 else{
                         $("#error2").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');
 
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz kont2o');
+                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Utworz konto');
 
                    
 

@@ -36,8 +36,7 @@ class User  extends DBObject{
                 'login' => $this->login,
                 'haslo' => $this->haslo,
                 'id_zamowienia' => 0,
-                'id_pracownika' => 0,
-                'pesel' => 0,
+                'telefon' => 0,
                 'email' => $this->email
             );
         }
@@ -112,11 +111,11 @@ class User  extends DBObject{
         // Jeżeli przesłano hasło nastepuje aktualizacja użytkownika wraz z hasłem
         if (strlen($password) > 0) {
             $password = md5($password);
-            $query = $this->db->query("UPDATE klient SET email = '$email', haslo = '$password', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = $id");
+            $query = $this->db->query("UPDATE klient SET email = '$email', haslo = '$password', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = '$id'");
         }
         // W przeciwnym wypadku następuje aktualizacja bez zmiany hasła
         else
-            $query = $this->db->query("UPDATE klient SET email = '$email', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = $id");
+            $query = $this->db->query("UPDATE klient SET email = '$email', ulica = '$street', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', kod_pocztowy = '$kod_pocztowy', miasto = '$city', panstwo = '$country'  WHERE id_klienta = '$id'");
         $query->fetch();
     }
 
