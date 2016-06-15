@@ -21,7 +21,6 @@ class Wiadomosc  extends DBObject{
             $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
             $result[$key] = array_merge($row, $result2);
         }
-        //error_log(print_r($result, true), 0);
         return $result;
     }
 

@@ -457,8 +457,6 @@ class Controller
 			$this->result[1] = $stm2->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//error_log(print_r($this->result, true), 0);
-
 		if(!isset($id) || $id == "")
 		{
 			$id = 'panel_kierownika';

@@ -47,7 +47,6 @@ elseif(isset($_POST['dodaj']) && $_POST['dodaj'] == 1)
     }
 }
 elseif(isset($_POST['id_wiadomosci1'])) {
-    error_log(print_r($_POST, true), 0);
     for ($i = 1; $i <= 10; $i++) {
         if(isset($_POST['id_wiadomosci'.$i]))
         {

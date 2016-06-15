@@ -112,7 +112,6 @@ $stm2 = $db->query("select * from produkt");
                         <tbody>
                         <?php
                         foreach ($this->result[1] as $row) {
-                            //error_log(print_r($this->result[1], true), 0);
                             ?>
                             <tr class="table-row">
                                 <td class=" "><?php echo $row[0]; ?></td>

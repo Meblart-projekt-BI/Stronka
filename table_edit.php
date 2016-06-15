@@ -23,24 +23,6 @@ $input = filter_input_array(INPUT_POST);
 /* ustawienie zmiennych konfiguracyjnych */
 include('config.php');
 $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
-/*
-if($_SESSION['kierownik'])
-{
-    print "elo kierownik";
-}
-else
-{
-    session_destroy();
-    header("Location: index.php");
-}
-
-print_r($input);
-
-error_log(print_r($input, true), 0);
-*/
-
-//error_log(print_r($input['tab'], true), 0);
-//error_log(print_r($input, true), 0);
 
 if($input['typ'] === 'produkty')
 {
