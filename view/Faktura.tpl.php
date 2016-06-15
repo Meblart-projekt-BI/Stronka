@@ -83,7 +83,9 @@ error_reporting(~E_NOTICE);
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
+							<?php if ($_SESSION['pracownik']) { ?>
                             <a class="navbar-brand" href="index.php?do=panel">Panel pracownika</a>
+							<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -93,35 +95,29 @@ error_reporting(~E_NOTICE);
         <div class="container">
             <!-- left, vertical navbar & content -->
             <div class="row">
+			<?php if ($_SESSION['pracownik']) { ?>
                 <!-- left, vertical navbar -->
                 <div class="col-md-2 list-group">
                             <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                            <a href="index.php?do=faktura" class="list-group-item"><span class="badge pull-right"><?php printf(count($this->result[0]));?></span>Faktury</a>
                             <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
                 </div>
-
+			<?php } ?>
 
                 <!-- content -->
                 <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="page-header">
-                                <h1>Faktury</h1>
-                            </div>
-                        </div>
-                    </div>
+
 
                 <section class="content invoice">
                       <!-- title row -->
                       <div class="row">
                         <div class="col-xs-12 invoice-header">
                           <h1>
-                                          <i class="fa fa-globe"></i><h3>Faktura </h3>
+                                          <h3><i class="fa fa-globe"></i> Faktura </h3>
                                       </h1>
                         </div>
                         <!-- /.col -->
                       </div>
+					  <br>
                       <!-- info row -->
                       <div class="row invoice-info">
                         <div class="col-sm-4 invoice-col">
@@ -139,37 +135,22 @@ error_reporting(~E_NOTICE);
                         <div class="col-sm-4 invoice-col">
                           Dla
                           <address>
-                          <?php
-                            foreach ($this->result[4] as $row)
-                            foreach ($this->result[5] as $row2)
-                            {
-                          ?>
-                                          <strong><?=$row['imie'];?> <?=$row['nazwisko'];?></strong>
-                                          <br><?=$row2['ulica'];?> <?=$row2['nr_domu'];?>/<?=$row2['nr_mieszkania'];?>
-                                          <br><?=$row2['kod_pocztowy'];?> <?=$row2['miasto'];?>
-                                          <br><?=$row2['panstwo'];?>
-                                          <br><?=$row['email'];?>
+                                          <strong><?=$this->result[0][0]['imie'];?> <?=$this->result[0][0]['nazwisko'];?></strong>
+                                          <br><?=$this->result[0][0]['ulica'];?> <?=$this->result[0][0]['nr_domu'];?>/<?=$this->result[0][0]['nr_mieszkania'];?>
+                                          <br><?=$this->result[0][0]['kod_pocztowy'];?> <?=$this->result[0][0]['miasto'];?>
+                                          <br><?=$this->result[0][0]['panstwo'];?>
+                                          <br><?=$this->result[0][0]['email'];?>
                           </address>
-                          <?php
-                            }
-                          ?>
                         </div>
                         <!-- /.col -->
-                         <?php
-                            foreach ($this->result[6] as $row3)
-                            {
-                          ?>
                         <div class="col-sm-4 invoice-col">
-                          <b>Numer zamówienia: <?=$row3['id_zamowienia'];?> </b>
+                          <b>Numer zamówienia: <?=$this->result[0][0]['id_zamowienia'];?> </b>
                           <br>
                           <br>
-                          <b>Data zakupu</b> <?=$row3['data_zamowienia'];?> 
+                          <b>Data zakupu</b> <?=$this->result[0][0]['data_zamowienia'];?> 
                           <br>
                           
                         </div>
-                        <?php
-                            }
-                          ?>
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->
@@ -191,20 +172,20 @@ error_reporting(~E_NOTICE);
                             <tbody>
                               
                                 <?php
-                               
-                                foreach ($this->result[7] as $row4)
+								$suma=0;
+                                foreach ($this->result[1] as $row)
                                 {
                                 ?>
                               
                                 <tr>
-                                <td>    </td>
-                                <td><?=$row4['nazwa_produktu'];?></td>
-                                <td><?=$row4['id_produktu'];?></td>
-                                <td><?=$row4['opis_produktu'];?></td>
-                               
-                                <td>Suma za zakupy</td>
+                                <td><?=$row['ilosc'];?></td>
+                                <td><?=$row['nazwa_produktu'];?></td>
+                                <td><?=$row['id_produktu'];?></td>
+                                <td><?=$row['opis_produktu'];?></td>
+                                <td><?=$row['ilosc']*$row['cena_jednostkowa'];?> zł</td>
                                 </tr>
                                <?php
+							   $suma += $row['ilosc']*$row['cena_jednostkowa'];
                                 }
                                ?>
                           
@@ -221,7 +202,7 @@ error_reporting(~E_NOTICE);
                           <p class="lead">Metody płatności</p>
                           <img src="images/visa.png" alt="Visa">
                           <img src="images/mastercard.png" alt="Mastercard">
-                          <img src="images/paypal2.png" alt="Paypal">
+                          <img src="images/paypal.png" alt="Paypal">
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-6">
@@ -231,19 +212,19 @@ error_reporting(~E_NOTICE);
                               <tbody>
                                 <tr>
                                   <th style="width:50%">Suma:</th>
-                                  <td>....(zł)</td>
+                                  <td><?=$suma;?>(zł)</td>
                                 </tr>
                                 <tr>
                                   <th>Podatek (23%)</th>
-                                  <td>Cena z podatkiem (zł)</td>
+                                  <td><?=$suma+(0.23*$suma);?> (zł)</td>
                                 </tr>
                                 <tr>
                                   <th>Cena dostawy:</th>
-                                  <td>...(zł)</td>
+                                  <td><?=$this->result[0][0]['cena_dostawy'];?> (zł)</td>
                                 </tr>
                                 <tr>
                                   <th>Razem do zapłaty:</th>
-                                  <td>...(zł)</td>
+                                  <td id="total"><?=$suma+(0.23*$suma)+$this->result[0][0]['cena_dostawy'];?> (zł)</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -257,7 +238,6 @@ error_reporting(~E_NOTICE);
                       <div class="row no-print">
                         <div class="col-xs-12">
                           <button class="btn btn-default pull-right" onclick="window.print();"><i class="fa fa-print"></i>Drukuj</button>
-                          <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i>Zapisz fakturę</button>
                         </div>
                       </div>
                     </section>

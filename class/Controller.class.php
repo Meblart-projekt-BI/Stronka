@@ -42,13 +42,13 @@ class Controller
 		$this->result[1] = $product->getProducts();
 
 
-	if (!$_SESSION['pracownik'] || $_SESSION['main'])  // str. glowna
+	if ((!$_SESSION['pracownik'] || $_SESSION['main']) && !isset($_GET['id']))  // str. glowna
   		{
   			$view = new View('Main', $this->result);
   			$this->page->addView($view);
 		} else // panel klienta
 		{
-
+			
 			switch ($_GET['do']) {
 				case 'zamowienia':
                     $this->result[2]= $product->getZamowienie();
@@ -57,10 +57,7 @@ class Controller
 					$this->page->addView($view);
 					break;
 				case 'faktura':
-                    //$this->result[4] = $product->getDaneKlienta();
-                    // $this->result[5]= $product->getAdresKlienta();
-                    //$this->result[6]= $product->getZamowienieKlienta();
-                    //$this->result[7]= $product->getZamowienieProduktyKlienta();
+					$this->result = $product->generateFaktura(addslashes($_GET['id']));
 					$view = new View('Faktura',$this->result);
 					$this->page->addView($view);
 					break;

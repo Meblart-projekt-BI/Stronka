@@ -40,19 +40,19 @@
                         </tr>
                         </thead>
 
-
-
-
                         <tbody>
-                        <?php foreach ($this->result['zamowienia'] as $zamowienie) { ?>
+                        <?php foreach ($this->result['zamowienia'] as $zamowienie) {
+							$total = explode('<td id="total">', file_get_contents("http://".$_SERVER['HTTP_HOST']."/".$_SERVER['PHP_SELF']."?do=faktura&id=".$zamowienie['id_zamowienia']));
+							$total = explode('</td>', $total[1]);
+						?>
                             <tr class="even pointer">
                                 <td class=" "><?=$zamowienie['data_zamowienia'];?></td>
                                 <td class=" "><?=$zamowienie['status_zamowienia'];?></td>
-                                <td class=" "><?=$zamowienie['koszt'];?> pln</td>
+                                <td class=" "><?=$total[0];?> pln</td>
                                 <td class="last">
-                                    <button type="button" class="btn btn-default">Drukuj
+                                    <a href="index.php?do=faktura&id=<?=$zamowienie['id_zamowienia'];?>" class="btn btn-default">Pokaż
                             <span class="glyphicon glyphicon-download">
-                            </span></button>
+                            </span></a>
                                 </td>
                             </tr>
                         <?php } ?>

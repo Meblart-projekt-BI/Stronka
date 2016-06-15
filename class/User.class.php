@@ -78,8 +78,8 @@ class User  extends DBObject{
         }
 		else //pracownik
 		{
-			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
-			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$this->haslo'");
+			$stm2 = $this->db->query("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
+			$stm = $this->db->count("select * from ".static::$table_." where email = '$this->email' and haslo = '$pass'");
 			$this->result = $stm;
 			$result2 = $stm2->fetch(PDO::FETCH_ASSOC);
 			if($stm == 1) 

@@ -20,17 +20,12 @@ class Order extends DBObject {
             'id_klienta'  => $id_klienta,
             'data_zamowienia' => $data_zamowienia,
             'status_zamowienia' => $status_zamowienia,
-            'koszt' => $koszt,
-            'imie' => $imie,
-            'nazwisko' => $nazwisko,
-            'ulica' => $ulica,
-            'postcode' => $postcode,
-            'miasto' => $miasto,
-            'phone' => $phone,
             'uwagi' => $uwagi
         );
-
         self::store($this->db,$this->data);
+		
+        $this->db->query("UPDATE `klient` SET `imie` = '".$imie."', `nazwisko` =  '".$nazwisko."', `telefon` =  '".$phone."', `ulica` =  '".$ulica."', `kod_pocztowy` =  '".$postcode."', `miasto` =  '".$miasto."' where `id_klienta`  = '".$id_klienta."'");
+		
     }
 
     //pobieram ostatnie id zamówienia
@@ -44,8 +39,8 @@ class Order extends DBObject {
     //pobieram wszystkie zamówienia dla wskazanego klienta
     function getOrdersByUserId($id)
     {
-        $orders = $this->db->query("select * from zamowienie where id_klienta = '$id'");
-        $ordersDetails = $orders->fetchAll();
+        $orders = $this->db->query("select * from zamowienie z, zamowienie_szczegoly s, produkt p, kurier k where k.id_dostawcy = z.id_dostawcy and z.id_zamowienia = s.id_zamowienia and s.id_produktu = p.id_produktu and z.id_klienta = '$id'");
+		$ordersDetails = $orders->fetchAll();
         return $ordersDetails;
     }
 }

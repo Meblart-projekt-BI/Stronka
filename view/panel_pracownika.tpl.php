@@ -95,8 +95,6 @@ error_reporting(~E_NOTICE);
                  <div class="col-md-2 list-group">
               
                             <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                      
-                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
                        
                             <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
                  

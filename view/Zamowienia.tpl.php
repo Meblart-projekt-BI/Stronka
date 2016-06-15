@@ -95,13 +95,8 @@ error_reporting(~E_NOTICE);
             <div class="row">
                 <!-- left, vertical navbar -->
                 <div class="col-md-2 list-group">
-              
                             <a href="index.php?do=zamowienia" class="list-group-item">Zamówienia</a>
-                      
-                            <a href="index.php?do=faktura" class="list-group-item">Faktury</a>
-                       
                             <a href="index.php?do=wiadomosci" class="list-group-item">Wiadomości</a>
-                 
                 </div>
 
 
@@ -146,9 +141,13 @@ error_reporting(~E_NOTICE);
                             <td class=" "><?=$row['id_klienta'];?></td>
                             <td class=" "><?=$row2['imie'];?></td>
                             <td class=" "><?=$row2['nazwisko'];?></td>
-                            <td class=" "><?=$row['status_zamowienia'];?></td>
+                            <td class=" ">
+                            <select class="form-control">
+                            <option><?=$row['status_zamowienia'];?></option>
+                            <option>waiting</option>
+                          </select>
                             <td class="a-right a-right ">wprowadz sumę za zakupy</td>
-                            <td class=" last"><a href="#">Wygeneruj fakturę</a>
+                            <td class=" last"><a href="index.php?do=faktura&id=<?=$row['id_zamowienia'];?>">Wygeneruj fakturę</a>
                             </td>
                           </tr>
             <?php } ?>

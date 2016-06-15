@@ -1,16 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of Product
- *
- * @author Piotr
- */
  
 class Product {
     //put your code here
@@ -148,5 +138,16 @@ class Product {
          
          return $this->result->fetchAll();
      }
+	 
+	 public function generateFaktura($id)
+	 {
+         $query = $this->db->query('select * from zamowienie z, klient k, kurier ku where z.id_klienta = k.id_klienta and z.id_zamowienia = "'.$id.'" and ku.id_dostawcy = z.id_dostawcy');
+         $this->result = $query;
+         $ret[0] = $this->result->fetchAll();
+         $query = $this->db->query('select * from zamowienie_szczegoly z, produkt p where id_zamowienia = "'.$id.'" and z.id_produktu = p.id_produktu');
+         $this->result = $query;
+         $ret[1] = $this->result->fetchAll();
+         return $ret;
+	 }
 
 }
