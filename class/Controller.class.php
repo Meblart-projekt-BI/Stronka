@@ -440,12 +440,11 @@ class Controller
 		$id = htmlspecialchars($_GET['typ']);
 		//echo $id;
 
-		$this->result[0][0] = 0; //zamowienia
-		$this->result[0][1] = 0; //faktury
-		$this->result[0][2] = $this->db->count("select * from klient"); //klienci
-		$this->result[0][3] = $this->db->count("select * from pracownik"); //pracownicy
-		$this->result[0][4] = $this->db->count("select * from produkt"); //produkty
-		$this->result[0][5] = $this->db->count("select * from wiadomosc"); //wiadomosci
+		$this->result[0][0] = $this->db->count("select * from zamowienie");; //zamowienia
+		$this->result[0][1] = $this->db->count("select * from klient"); //klienci
+		$this->result[0][2] = $this->db->count("select * from pracownik"); //pracownicy
+		$this->result[0][3] = $this->db->count("select * from produkt"); //produkty
+		$this->result[0][4] = $this->db->count("select * from wiadomosc"); //wiadomosci
 
 		if($id == 'produkty_k') {
 			$product = new Product($this->db);

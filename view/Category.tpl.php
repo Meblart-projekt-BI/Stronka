@@ -58,8 +58,8 @@
             foreach ($this->result[0] as $row)
             {
             ?>
-            <!-- Projects Row -->
-            <div class="col-sm-4 col-xs-6">
+                <!-- Projects Row -->
+                <div class="col-sm-4 col-xs-6" style="height:300px">
                     <img class="img-responsive img-hover" src="<?=$row['image'];?>"/>
                 <h3>
                     <a href="index.php?action=show&id=<?=$row['id_produktu'];?>"><?=$row['nazwa_produktu'];?></a>

@@ -67,24 +67,20 @@ if (!$_SESSION['kierownik']) {
                             class="badge pull-right"><?php echo $this->result[0][0] ?></span>Zamówienia</a>
                 </li>
                 <li>
-                    <a href="index.php?action=panel_kierownika&do=faktura"><span
-                            class="badge pull-right"><?php echo $this->result[0][1] ?></span>Faktury</a>
-                </li>
-                <li>
                     <a href="index.php?action=panel_kierownika&typ=klienci_k"><span
-                            class="badge pull-right"><?php echo $this->result[0][2] ?></span>Klienci</a>
+                            class="badge pull-right"><?php echo $this->result[0][1] ?></span>Klienci</a>
                 </li>
                 <li>
                     <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span
-                            class="badge pull-right"><?php echo $this->result[0][3] ?></span>Pracownicy</a>
+                            class="badge pull-right"><?php echo $this->result[0][2] ?></span>Pracownicy</a>
                 </li>
                 <li>
                     <a href="index.php?action=panel_kierownika&typ=produkty_k"><span
-                            class="badge pull-right"><?php echo $this->result[0][4] ?></span>Produkty</a>
+                            class="badge pull-right"><?php echo $this->result[0][3] ?></span>Produkty</a>
                 </li>
                 <li>
                     <a href="index.php?action=panel_kierownika&do=wiadomosci"><span
-                            class="badge pull-right"><?php echo $this->result[0][5] ?></span>Wiadomości</a>
+                            class="badge pull-right"><?php echo $this->result[0][4] ?></span>Wiadomości</a>
                 </li>
             </ul>
         </div>

@@ -63,13 +63,37 @@ class Product {
         
         return $this->result;
     }
-    
+
     public function getZamowienie()
     {
         $query = $this->db->query('select * from zamowienie');
-        $this->result = $query;
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $key => $row)
+        {
+            $stm2 = $this->db->query("select imie, nazwisko from klient where id_klienta='" . $row['id_klienta'] . "'");
+            $result2 = $stm2->fetch(PDO::FETCH_ASSOC);
+            $result[$key] = array_merge($row, $result2);
+
+            $query = $this->db->query('select * from zamowienie_szczegoly z, produkt p where id_zamowienia = "'.$row['id_zamowienia'].'" and z.id_produktu = p.id_produktu');
+            $ret = $query->fetchAll();
+            $suma = 0;
+            foreach($ret as $row2) {
+                $suma += $row2['ilosc'] * $row2['cena_jednostkowa'];
+            }
+            $query = $this->db->query('select * from zamowienie z, klient k, kurier ku where z.id_klienta = k.id_klienta and z.id_zamowienia = "'.$row['id_zamowienia'].'" and ku.id_dostawcy = z.id_dostawcy');
+            $ret = $query->fetchAll();
+            $suma += (0.23*$suma)+$ret[0]['cena_dostawy'];
+            $result[$key]['suma'] = $suma;
+        }
         
+        $this->result = $result;
         return $this->result;
+    }
+
+    public function updateStatusZamowienia($id, $status)
+    {
+        $this->db->query("UPDATE zamowienie SET status_zamowienia='" . $status . "' where id_zamowienia='" . $id . "'");
     }
     
     public function getDaneKlienta()
