@@ -12,10 +12,9 @@ class OrderDetails extends DBObject {
         $this->db = $db;
     }
     
-    function create($id, $id_zakupu, $id_produktu, $id_klienta, $ilosc)
+    function create($id_zakupu, $id_produktu, $id_klienta, $ilosc)
     {
         $this->data = array(
-            'id_zamowienia_szczegoly' => $id,
             'id_zamowienia' => $id_zakupu,
             'id_produktu'  => $id_produktu,
             'id_klienta' => $id_klienta,
@@ -23,14 +22,5 @@ class OrderDetails extends DBObject {
         );
         
         self::store($this->db,$this->data);
-    }
-
-
-    // W tej metodzie pobieram ostatnie id i dodaję do niego 1
-    function getNewOrderDetailsNumber()
-    {
-        $id = $this->db->query("select max(id_zamowienia_szczegoly) from zamowienie_szczegoly");
-        $id_zamowienia = $id->fetch();
-        return $id_zamowienia[0]+1;
     }
 }

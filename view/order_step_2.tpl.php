@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">Lista zakupów</h1>
             <ol class="breadcrumb">
-                <li><a href="index.html">Strona główna</a>
+                <li><a href="index.php">Strona główna</a>
                 </li>
             </ol>
         </div>
@@ -39,7 +39,7 @@
                     </p>
                     <?php } ?>
                     <div class="text-center">
-                        <a href="finalizacja_zamówienia1.html" class="btn btn-primary">Wróć - Dane osobowe</a>
+                        <a href="index.php?action=order_step_1" class="btn btn-primary">Wróć - Dane osobowe</a>
                         <input type="submit" class="btn btn-success" value="Podsumowanie">
                     </div>
                 </form>

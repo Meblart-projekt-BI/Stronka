@@ -1,0 +1,18 @@
+klienci:
+
+duda22@o2.pl - 12345678
+mazurek@o2.pl - mazurkiewicz
+
+
+
+pracownicy:
+
+wisnia@wp.pl - michal350
+
+debowy@wp.pl - decomorreno3
+
+
+
+kierownicy:
+
+korkiewicz@o2.pl - karatekid3

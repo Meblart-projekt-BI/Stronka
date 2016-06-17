@@ -35,7 +35,6 @@ class User  extends DBObject{
                 'nazwisko' => $this->nazwisko,
                 'login' => $this->login,
                 'haslo' => $this->haslo,
-                'id_zamowienia' => 0,
                 'telefon' => 0,
                 'email' => $this->email
             );

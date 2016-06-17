@@ -63,23 +63,23 @@ if (!$_SESSION['kierownik']) {
         <div class="col-md-2 bootstrap-admin-col-left">
             <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
                 <li>
-                    <a href="index.php?action=panel_kierownika&do=zamowienia"><span
+                    <a href="index.php?action=panel_kierownika&do=zamowienia" class="list-group-item"><span
                             class="badge pull-right"><?php echo $this->result[0][0] ?></span>Zamówienia</a>
                 </li>
                 <li>
-                    <a href="index.php?action=panel_kierownika&typ=klienci_k"><span
+                    <a href="index.php?action=panel_kierownika&typ=klienci_k" class="list-group-item"><span
                             class="badge pull-right"><?php echo $this->result[0][1] ?></span>Klienci</a>
                 </li>
                 <li>
-                    <a href="index.php?action=panel_kierownika&typ=pracownicy_k"><span
+                    <a href="index.php?action=panel_kierownika&typ=pracownicy_k" class="list-group-item"><span
                             class="badge pull-right"><?php echo $this->result[0][2] ?></span>Pracownicy</a>
                 </li>
                 <li>
-                    <a href="index.php?action=panel_kierownika&typ=produkty_k"><span
+                    <a href="index.php?action=panel_kierownika&typ=produkty_k" class="list-group-item"><span
                             class="badge pull-right"><?php echo $this->result[0][3] ?></span>Produkty</a>
                 </li>
                 <li>
-                    <a href="index.php?action=panel_kierownika&do=wiadomosci"><span
+                    <a href="index.php?action=panel_kierownika&do=wiadomosci" class="list-group-item"><span
                             class="badge pull-right"><?php echo $this->result[0][4] ?></span>Wiadomości</a>
                 </li>
             </ul>

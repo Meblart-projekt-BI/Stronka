@@ -43,7 +43,7 @@ error_reporting(~E_NOTICE);
                                     Witaj: <?= $_SESSION['user']; ?> </i></a>
                             <?php } ?>
                         </li>
-                        <li><a href="index.php?do=page">Wyloguj się</a></li>
+                        <li><a href="index.php?action=logout">Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>

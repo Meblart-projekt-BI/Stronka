@@ -42,7 +42,7 @@ error_reporting(~E_NOTICE);
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
 
-            <?php if (!isset($_SESSION['pracownik']) || !$_SESSION['pracownik']) { ?>
+            <?php if ((!isset($_SESSION['pracownik']) || !$_SESSION['pracownik']) && $_SESSION['login']=='yes') { ?>
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.php?action=showCart">Koszyk</a>
                 </div>

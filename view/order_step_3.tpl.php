@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">Lista zakupów</h1>
             <ol class="breadcrumb">
-                <li><a href="index.html">Strona główna</a>
+                <li><a href="index.php">Strona główna</a>
                 </li>
             </ol>
         </div>

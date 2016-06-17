@@ -278,7 +278,7 @@ class Controller
 		$order = new Order($this->db);
 
 		// Dodaję nowy wpis zamówienia potrzebnego do wyświetlania w panelu
-		$order->create(
+		$zamowienie_id = $order->create(
 			$_SESSION['zamowienie']['id_dostawcy'],
 			$_SESSION['id_klienta'],
 			date("Y-m-d H:i:s"),
@@ -294,12 +294,10 @@ class Controller
 		);
 
 		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
-		$zamowienie_id = $order->getLastOrderNumber();
-		$zamowienie_szczegoly_id = $orderDetails->getNewOrderDetailsNumber();
 
 		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
-			$orderDetails->create($zamowienie_szczegoly_id, $zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
+			$orderDetails->create($zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
 		}
 
 

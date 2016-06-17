@@ -18,7 +18,7 @@
             <div class="list-group">
                 <a href="index.php?action=userpanel" class="list-group-item">Moje dane</a>
                 <a href="index.php?action=historia" class="list-group-item">Historia zamówień</a>
-                <a href="index.php?action=kontakt" class="btn  btn-block btn-danger" role="button"><i class="glyphicon glyphicon-edit"></i> Napisz
+                <a href="index.php?action=kontakt#contactForm" class="btn  btn-block btn-danger" role="button"><i class="glyphicon glyphicon-edit"></i> Napisz
                     wiadomość</a>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2">E-mail:<span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 form-group">
-                            <input type="text" name="email" class="form-control" placeholder="E-mail" value="<?=$this->result['klient']['email'];?>" required="required">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" value="<?=$this->result['klient']['email'];?>" required="required">
                         </div>
 
                         <label class="control-label col-md-2 col-sm-2">Powtórz e-mail:<span class="required">*</span></label>
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2">Numer domu:</label>
+                        <label class="control-label col-md-2 col-sm-2">Numer domu:<span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 form-group">
                             <input type="text" name="nr_domu" class="form-control" placeholder="Numer domu" value="<?=$this->result['klient']['nr_domu'];?>" required="required">
                         </div>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2">Państwo:</label>
+                        <label class="control-label col-md-2 col-sm-2">Państwo:<span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 form-group">
                             <input type="text" name="country" class="form-control" placeholder="Państwo" value="<?=$this->result['klient']['panstwo'];?>" required="required">
                         </div>
@@ -128,10 +128,6 @@
     $("#profile-form").validate({
         rules:
         {
-            user_name: {
-                required: true,
-                minlength: 3
-            },
             password: {
                 minlength: 8,
                 maxlength: 15
@@ -139,22 +135,28 @@
             password2: {
                 equalTo: '#password'
             },
-            user_email: {
+            email: {
                 required: true,
                 email: true
+            },
+            email2: {
+                equalTo: '#email'
             },
         },
         messages:
         {
-            user_name: "please enter user name",
             password:{
                 required: "please provide a password",
                 minlength: "password at least have 8 characters"
             },
-            user_email: "please enter a valid email address",
-            cpassword:{
+            email: "please enter a valid email address",
+            password2:{
                 required: "please retype your password",
                 equalTo: "password doesn't match !"
+            },
+            email2:{
+                required: "please retype your email",
+                equalTo: "email doesn't match !"
             }
         }
     });
