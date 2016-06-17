@@ -297,7 +297,10 @@ class Controller
 
 		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
+<<<<<<< HEAD
 			$orderDetails->create($zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
+=======
+>>>>>>> origin/Testy
 		}
 
 
