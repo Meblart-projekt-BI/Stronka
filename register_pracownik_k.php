@@ -17,13 +17,11 @@ $db = new DB($dbtype, $dbhost, $dbname, $dbuser, $dbpass);
 $user = new User($db);
 $data = array(
     'id_pracownika' => htmlspecialchars($_POST['id_pracownika']),
-    'id_klienta' => 0,
     'imie' => '',
     'nazwisko' => '',
     'login' => '',
     'haslo' => md5('maslowniczka25'),
     'id_szefa' => 0,
-    'id_magazynu' => 0,
     'email' => ''
 );
 $user->create($data, 'pracownik');

@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">Lista zakupów</h1>
             <ol class="breadcrumb">
-                <li><a href="index.html">Strona główna</a>
+                <li><a href="index.php">Strona główna</a>
                 </li>
             </ol>
         </div>
@@ -39,10 +39,10 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ulica">Ulica<span ></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ulica">Ulica<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="ulica" class="form-control col-md-7 col-xs-12" name="ulica" type="text">
+                            <input id="ulica" class="form-control col-md-7 col-xs-12" name="ulica" required="required"  type="text">
                         </div>
                     </div>
                     <div class="item form-group">

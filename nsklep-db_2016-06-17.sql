@@ -2,10 +2,10 @@
 -- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 15, 2016 at 02:53 AM
--- Server version: 5.6.29
--- PHP Version: 7.0.4
+-- Host: 127.0.0.1
+-- Generation Time: Jun 17, 2016 at 03:35 AM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nsklep`
+-- Database: `sklep`
 --
 
 -- --------------------------------------------------------
@@ -53,7 +53,6 @@ CREATE TABLE `klient` (
   `nazwisko` text COLLATE utf8_polish_ci NOT NULL,
   `login` text COLLATE utf8_polish_ci NOT NULL,
   `haslo` text COLLATE utf8_polish_ci NOT NULL,
-  `id_zamowienia` int(11) NOT NULL,
   `email` text COLLATE utf8_polish_ci NOT NULL,
   `telefon` text COLLATE utf8_polish_ci NOT NULL,
   `ulica` text COLLATE utf8_polish_ci,
@@ -68,10 +67,9 @@ CREATE TABLE `klient` (
 -- Dumping data for table `klient`
 --
 
-INSERT INTO `klient` (`id_klienta`, `imie`, `nazwisko`, `login`, `haslo`, `id_zamowienia`, `email`, `telefon`, `ulica`, `nr_domu`, `nr_mieszkania`, `kod_pocztowy`, `miasto`, `panstwo`) VALUES
-(9, 'Jakiś', 'Ktoś', 'lukassz', '202cb962ac59075b964b07152d234b70', 123, 'lukasz@wp.pl', '123456789', '', '5', '23', '12345', 'Domyśl się', 'Polska'),
-(10, 'Andrzej', 'Duda', 'duda', '81dc9bdb52d04dc20036dbd8313ed055', 124, 'duda@o2.pl', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(31, 'Adam', 'Mazurkiewicz', 'mazur', '25d55ad283aa400af464c76d713c07ad', 0, 'mazurek@o2.pl', '', 'Ulala', '12', '4', '3333', 'Rzeszów', 'Polska');
+INSERT INTO `klient` (`id_klienta`, `imie`, `nazwisko`, `login`, `haslo`, `email`, `telefon`, `ulica`, `nr_domu`, `nr_mieszkania`, `kod_pocztowy`, `miasto`, `panstwo`) VALUES
+(10, 'Andrzej', 'Duda', 'duda', '02aecc74c275d94613362061133f521d', 'duda@o2.pl', '943 933 452', 'Poznansk', NULL, NULL, '35-088', 'Rzeszów', NULL),
+(31, 'Adam', 'Mazurkiewicz', 'mazur', 'd1a17ac2ecbcbd8349402d34c527211e', 'mazurek@o2.pl', '', 'Ulala', '12', '4', '3333', 'Rzeszów', 'Polska');
 
 -- --------------------------------------------------------
 
@@ -114,7 +112,7 @@ CREATE TABLE `opinia` (
 --
 
 INSERT INTO `opinia` (`id_opinii`, `id_klienta`, `tresc`, `data_wystawienia`, `id_produktu`) VALUES
-(1, 9, 'Drewno i metal.\r\nPlastik to wiadomo - tandeta. Gorszy jest tylko technorattan - plastik udający coś czym nie jest i nigdy nie będzie.', '2016-06-01 00:00:00', 2);
+(3, 10, 'Aluminium idealnie sprawdza się do krzeseł ogrodowych.', '2016-06-17 03:34:24', 1);
 
 -- --------------------------------------------------------
 
@@ -137,9 +135,9 @@ CREATE TABLE `pracownik` (
 --
 
 INSERT INTO `pracownik` (`id_pracownika`, `imie`, `nazwisko`, `login`, `haslo`, `email`, `id_szefa`) VALUES
-(1, 'Piotr', 'Wiśniewski', 'wisnia', '827ccb0eea8a706c4c34a16891f84e7b', 'wisnia@wp.pl', 1005),
-(2, 'Michał', 'Dąbrowski', 'debowy', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'debowy@wp.pl', 1005),
-(1005, 'Andrzej', 'Kornik', 'abdul', '081071401562678303574ab2d137a637', 'abdul@o2.pl', 1005);
+(1, 'Piotr', 'Wiśniewski', 'wisnia', '1123ebc56e0d9330a550a5e8ae16b699', 'wisnia@wp.pl', 1005),
+(2, 'Michał', 'Dąbrowski', 'debowy', '3f608034e547fedbb54be33f26324279', 'debowy@wp.pl', 1005),
+(1005, 'Andrzej', 'Kornik', 'korek', '77b3c3a0b48a558ecb6b1e697d50b95b', 'korkiewicz@o2.pl', 0);
 
 -- --------------------------------------------------------
 
@@ -200,8 +198,7 @@ CREATE TABLE `wiadomosc` (
 --
 
 INSERT INTO `wiadomosc` (`id_wiadomosci`, `tresc_wiadomosci`, `id_klienta`, `tytul_wiadomosci`) VALUES
-(1, 'Testowa wiadomosc 1, to jest tresc', 9, 'Testowa wiadomosc'),
-(3, 'Wlazl kotek na plotek jak dostal buta to nauczyl sie latac', 31, 'Ony'),
+(1, 'Kupie opla po taniosci', 31, 'Testowa wiadomosc'),
 (4, 'Sprawdzam czy to działa.... Asia', 10, 'Hej');
 
 -- --------------------------------------------------------
@@ -224,17 +221,8 @@ CREATE TABLE `zamowienie` (
 --
 
 INSERT INTO `zamowienie` (`id_zamowienia`, `id_dostawcy`, `id_klienta`, `data_zamowienia`, `status_zamowienia`, `uwagi`) VALUES
-(2, 1, 9, '2016-06-10 00:56:56', 'paid', 'eyu'),
-(174, 2, 10, '2016-06-11 13:47:09', 'waiting', 'aaa'),
-(175, 1, 10, '2016-06-14 21:18:15', 'waiting', 'Brak'),
-(176, 1, 9, '2016-06-15 01:41:19', 'waiting', 'Brak'),
-(177, 1, 9, '2016-06-15 01:41:36', 'waiting', 'Brak'),
-(178, 1, 9, '2016-06-15 01:41:52', 'waiting', 'Brak'),
-(179, 1, 9, '2016-06-15 01:43:47', 'waiting', 'Brak'),
-(180, 1, 9, '2016-06-15 01:56:55', 'waiting', 'Brak'),
-(181, 1, 9, '2016-06-15 01:59:46', 'waiting', 'brak'),
-(182, 1, 9, '2016-06-15 02:00:23', 'waiting', 'brak'),
-(183, 1, 9, '2016-06-15 02:01:09', 'waiting', 'brak');
+(189, 1, 10, '2016-06-17 03:30:52', 'waiting', 'Brak'),
+(190, 2, 10, '2016-06-17 03:31:45', 'paid', 'Brak');
 
 -- --------------------------------------------------------
 
@@ -255,20 +243,12 @@ CREATE TABLE `zamowienie_szczegoly` (
 --
 
 INSERT INTO `zamowienie_szczegoly` (`id_zamowienia_szczegoly`, `id_zamowienia`, `id_produktu`, `id_klienta`, `ilosc`) VALUES
-(1, 171, 1, 29, 1),
-(2, 172, 1, 29, 1),
-(2, 172, 2, 29, 1),
-(3, 173, 7, 31, 2),
-(4, 174, 2, 10, 1),
-(4, 174, 3, 10, 1),
-(4, 174, 1, 10, 2),
-(0, 2, 2, 9, 3),
-(1, 2, 2, 9, 3),
-(5, 175, 3, 10, 1),
-(5, 175, 4, 10, 1),
-(6, 177, 3, 9, 1),
-(7, 183, 3, 9, 1),
-(7, 183, 4, 9, 1);
+(4, 189, 1, 10, 1),
+(5, 189, 12, 10, 2),
+(6, 189, 15, 10, 3),
+(7, 190, 1, 10, 1),
+(8, 190, 12, 10, 2),
+(9, 190, 15, 10, 3);
 
 --
 -- Indexes for dumped tables
@@ -323,6 +303,12 @@ ALTER TABLE `zamowienie`
   ADD PRIMARY KEY (`id_zamowienia`);
 
 --
+-- Indexes for table `zamowienie_szczegoly`
+--
+ALTER TABLE `zamowienie_szczegoly`
+  ADD PRIMARY KEY (`id_zamowienia_szczegoly`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -335,7 +321,7 @@ ALTER TABLE `kategoria`
 -- AUTO_INCREMENT for table `klient`
 --
 ALTER TABLE `klient`
-  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_klienta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `kurier`
 --
@@ -345,7 +331,7 @@ ALTER TABLE `kurier`
 -- AUTO_INCREMENT for table `opinia`
 --
 ALTER TABLE `opinia`
-  MODIFY `id_opinii` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_opinii` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pracownik`
 --
@@ -355,17 +341,22 @@ ALTER TABLE `pracownik`
 -- AUTO_INCREMENT for table `produkt`
 --
 ALTER TABLE `produkt`
-  MODIFY `id_produktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_produktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `wiadomosc`
 --
 ALTER TABLE `wiadomosc`
-  MODIFY `id_wiadomosci` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_wiadomosci` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `id_zamowienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id_zamowienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+--
+-- AUTO_INCREMENT for table `zamowienie_szczegoly`
+--
+ALTER TABLE `zamowienie_szczegoly`
+  MODIFY `id_zamowienia_szczegoly` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -40,13 +40,17 @@
                     <h1 class="price"><?= $this->result[0][0]['cena_jednostkowa']; ?> zł</h1>
                 </div>
 
-                <?php if (!isset($_SESSION['pracownik']) || !$_SESSION['pracownik']) { ?>
-                    <div class="">
-                        <a href="index.php?action=addToCart&id=<?= $this->result[0][0]['id_produktu']; ?>">
-                            <button type="button" class="btn btn-default btn-lg">Do koszyka!</button>
-                        </a>
-                    </div>
-                <?php } ?>
+                <?php if (!isset($_SESSION['pracownik']) || !$_SESSION['pracownik']) {
+                    if ($_SESSION['login'] == 'yes') { ?>
+                        <div class="">
+                            <a href="index.php?action=addToCart&id=<?= $this->result[0][0]['id_produktu']; ?>">
+                                <button type="button" class="btn btn-default btn-lg">Do koszyka!</button>
+                            </a>
+                        </div>
+                    <?php } else { ?>
+                        <span style='color:#cc0000'>Aby korzystać z koszyka musisz się zalogować!</span>
+                    <?php }
+                } ?>
                 <hr>
                 <p>
                     <?= $this->result[0][0]['opis_produktu']; ?>
