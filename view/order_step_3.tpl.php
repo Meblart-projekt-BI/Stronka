@@ -21,7 +21,7 @@
             <!-- ELEMENT -->
             <div class="col-xs-8">
                 <div class="text-center">
-                    <h3>Krok 3 z 3 - Podsumowanie</h3>
+                    <h3>Krok 2 z 2 - Podsumowanie</h3>
                 </div>
                 <h4>Dane zamawiającego:</h4>
                 <p>

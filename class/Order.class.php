@@ -24,7 +24,7 @@ class Order extends DBObject {
         );
         $id_zamowienia = self::store($this->db,$this->data);
 		
-        $this->db->query("UPDATE `klient` SET `imie` = '".$imie."', `nazwisko` =  '".$nazwisko."', `telefon` =  '".$phone."', `ulica` =  '".$ulica."', `kod_pocztowy` =  '".$postcode."', `miasto` =  '".$miasto."' where `id_klienta`  = '".$id_klienta."'");
+        //$this->db->query("UPDATE `klient` SET `imie` = '".$imie."', `nazwisko` =  '".$nazwisko."', `telefon` =  '".$phone."', `ulica` =  '".$ulica."', `kod_pocztowy` =  '".$postcode."', `miasto` =  '".$miasto."' where `id_klienta`  = '".$id_klienta."'");
 
         return $id_zamowienia;
     }

@@ -124,13 +124,10 @@ class Controller
 		if ($_SESSION['login'] != 'yes') {
 			header("Location: index.php");
 		} else {
-			// Tutaj wykonujemy kod dodania do koszyka dla osoby zalogowanej
 			$id = htmlspecialchars($_GET['id']);
 			$cart = new Cart($this->db);
 			$this->result = $cart->addItemToCart($id);
 
-			// Jeżeli kierujemy z koszyka z powrotem do edycji ilości produktu w koszyku pobieramy z $_GET ilość produktów,
-			//  w przeciwnym wypadku ustawiamy wartość na 1
 			$this->result[1] = 1;
 			if (isset($_GET['ilosc']))
 				$this->result[1] = $_GET['ilosc'];
@@ -191,6 +188,8 @@ class Controller
 
 	public function order_step_1()
 	{
+		$this->order_step_2();
+/*
 		if ($_SESSION['login'] != 'yes')
 			header("Location: index.php");
 
@@ -204,6 +203,7 @@ class Controller
 		} else {
 			header("Location: index.php");
 		}
+*/
 	}
 
 	public function order_step_2()
@@ -214,6 +214,7 @@ class Controller
 		if (count($_SESSION['koszyk']) <= 0)
 			header("Location: index.php");
 
+		/*
 		$_SESSION['zamowienie']['imie'] = $_POST['imie'];
 		$_SESSION['zamowienie']['nazwisko'] = $_POST['nazwisko'];
 		$_SESSION['zamowienie']['ulica'] = $_POST['ulica'];
@@ -221,6 +222,7 @@ class Controller
 		$_SESSION['zamowienie']['miasto'] = $_POST['miasto'];
 		$_SESSION['zamowienie']['phone'] = $_POST['phone'];
 		$_SESSION['zamowienie']['uwagi'] = $_POST['uwagi'];
+		*/
 
 		$koszyk = $_SESSION['koszyk'];
 
@@ -244,6 +246,8 @@ class Controller
 
 		$koszyk = $_SESSION['koszyk'];
 
+		$_SESSION['zamowienie']['uwagi'] = $_POST['uwagi'];
+
 		if (isset($koszyk) && is_array($koszyk)) {
 			$_SESSION['zamowienie']['id_dostawcy'] = $_POST['id_dostawcy'];
 			$courier = new Courier($this->db);
@@ -265,6 +269,16 @@ class Controller
 			$calkowita_kwota = $kwota_zamowienia + $courier_result[0]['cena_dostawy'];
 			$_SESSION['zamowienie']['calkowita_kwota'] = $calkowita_kwota;
 
+			$user = new User($this->db);
+			$tet = $user->getUserById($_SESSION['id_klienta'])[0];
+
+			$_SESSION['zamowienie']['imie'] = $tet['imie'];
+			$_SESSION['zamowienie']['nazwisko'] = $tet['nazwisko'];
+			$_SESSION['zamowienie']['ulica'] = $tet['ulica'];
+			$_SESSION['zamowienie']['postcode'] = $tet['kod_pocztowy'];
+			$_SESSION['zamowienie']['miasto'] = $tet['miasto'];
+			$_SESSION['zamowienie']['phone'] = $tet['telefon'];
+
 			$view = new View('order_step_3', ["koszyk_widok" => $koszyk_widok, "kwota_zamowienia" => $kwota_zamowienia, "courier" => $courier_result[0], "calkowita_kwota" => $calkowita_kwota]);
 			$this->page->addView($view);
 		} else {
@@ -277,7 +291,6 @@ class Controller
 		$orderDetails = new OrderDetails($this->db);
 		$order = new Order($this->db);
 
-		// Dodaję nowy wpis zamówienia potrzebnego do wyświetlania w panelu
 		$zamowienie_id = $order->create(
 			$_SESSION['zamowienie']['id_dostawcy'],
 			$_SESSION['id_klienta'],
@@ -293,14 +306,8 @@ class Controller
 			$_SESSION['zamowienie']['uwagi']
 		);
 
-		// Pobieram pierwsze wolne id zamówienia i id zamówienia szczegóły w celu użycia w metodzie wstawiania nowego zamówienia
-
-		// Przechodze przez wszystkie elementy koszyka i dodaję nowe wpisy do zamówień szczegółowych
 		foreach ($_SESSION['koszyk'] as $id_produktu => $ilosc) {
-<<<<<<< HEAD
 			$orderDetails->create($zamowienie_id, $id_produktu, $_SESSION['id_klienta'], $ilosc);
-=======
->>>>>>> origin/Testy
 		}
 
 
@@ -394,10 +401,9 @@ class Controller
 			header("Location: index.php");
 
 		$user = new User($this->db);
-		// Pobranie wszystkich szczegółów użytkownika
+	
 		$user_details = $user->getUserById($_SESSION['id_klienta']);
 
-		// Jeżeli został przesłany formularz zmiany danych użytkonika
 		if (isset($_POST) && $_POST['update_user'] == 1) {
 			$email = $_POST['email'];
 			$email2 = $_POST['email2'];

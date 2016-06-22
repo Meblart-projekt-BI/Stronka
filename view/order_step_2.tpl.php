@@ -22,11 +22,11 @@
             <!-- ELEMENT -->
             <div class="col-xs-8">
                 <div class="text-center">
-                    <h3>Krok 2 z 3 - Dostawa i płatność</h3>
+                    <h3>Krok 1 z 2 - Dostawa i płatność</h3>
                     <p>
                         Koszty przesyłki uzależnione są od gabarytów oraz ilości zakupionych produktów.
                         Poniżej przedstawione są szacunkowe koszty - ostateczne koszty przesyłamy w mailu potwierdzającym zamówienie.
-                        Po otrzymaniu od nas maila można w ciągu "x" dni zmienić sposób wysyłki.</p>
+                        Po otrzymaniu od nas maila można w ciągu 2 dni zmienić sposób wysyłki.</p>
                 </div>
                 <p>Wybierz sposób dostawy:</p>
                 <form class="form-horizontal form-label-left" method="POST" action="index.php?action=order_step_3">
@@ -38,9 +38,16 @@
                         <?=$courier['nazwa_dostawcy'] . ' ' . $courier['cena_dostawy']?> PLN
                     </p>
                     <?php } ?>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Uwagi do zamówienia:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea id="textarea" required="required" name="uwagi" class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <a href="index.php?action=order_step_1" class="btn btn-primary">Wróć - Dane osobowe</a>
-                        <input type="submit" class="btn btn-success" value="Podsumowanie">
+                        <a href="index.php?action=showCart" class="btn btn-primary">Wróć do koszyka</a>
+                        <input class="btn btn-success" type="submit" value="Dostawa i płatność">
                     </div>
                 </form>
             </div>
